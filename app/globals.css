@@ -1,0 +1,186 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+	--font-sans: var(--font-inter);
+	--font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--radius-button: 10px;
+
+	/* Button spacing tokens */
+	--spacing-button-padding-top: 6px;
+	--spacing-button-padding-right: 8px;
+	--spacing-button-padding-bottom: 6px;
+	--spacing-button-padding-left: 6px;
+	--spacing-button-padding-x: 8px;
+	--spacing-button-padding-y: 6px;
+	--spacing-button-gap: 8px;
+
+	/* Checkbox spacing tokens */
+	--spacing-checkbox-padding-x: 0px;
+	--spacing-checkbox-padding-y: 2px;
+	--spacing-checkbox-gap: 8px;
+	--spacing-checkbox-label-gap: 2px;
+	--spacing-checkbox-label-hint-gap: 4px;
+	--spacing-checkbox-hint-gap: 4px;
+	--spacing-checkbox-tooltip-gap: 8px;
+
+	/* Checkbox radius */
+	--radius-checkbox: 5px;
+
+	/* Checkbox colors */
+	--color-checkbox-hint: #6a6a7e;
+
+	/* Switch spacing tokens */
+	--spacing-switch-padding-x: 0px;
+	--spacing-switch-padding-y: 2px;
+	--spacing-switch-gap: 8px;
+	--spacing-switch-label-gap: 2px;
+	--spacing-switch-label-hint-gap: 4px;
+	--spacing-switch-hint-gap: 4px;
+	--spacing-switch-track-padding: 2px;
+	--spacing-switch-dot-size: 12px;
+	--spacing-switch-track-width: 30px;
+
+	/* Switch radius */
+	--radius-switch: 99px;
+
+	/* Switch colors */
+	--color-switch-inactive: #d7d9de;
+	--color-switch-active: #060510;
+	--color-switch-active-hover: #1b1925;
+	--color-switch-disabled-bg: #f7f7f8;
+	--color-switch-disabled-border: #dfe1e6;
+	--color-switch-shadow: rgba(6, 5, 16, 0.04);
+
+	/* Radio spacing tokens */
+	--spacing-radio-padding-x: 0px;
+	--spacing-radio-padding-y: 2px;
+	--spacing-radio-gap: 8px;
+	--spacing-radio-label-gap: 2px;
+	--spacing-radio-label-hint-gap: 4px;
+	--spacing-radio-hint-gap: 4px;
+	--spacing-radio-dot-size: 6px;
+	--spacing-radio-size: 16px;
+
+	/* Radio radius */
+	--radius-radio: 99px;
+
+	/* Radio colors */
+	--color-radio-unchecked-bg: #ffffff;
+	--color-radio-unchecked-border: #dfe1e6;
+	--color-radio-unchecked-hover-border: #d7d9de;
+	--color-radio-checked-bg: #060510;
+	--color-radio-checked-hover-bg: #1b1925;
+	--color-radio-checked-dot: #ffffff;
+	--color-radio-disabled-bg: #f7f7f8;
+	--color-radio-disabled-border: #dfe1e6;
+	--color-radio-disabled-dot: #b8b9c5;
+	--color-radio-shadow: rgba(6, 5, 16, 0.04);
+
+	/* Select spacing tokens */
+	--spacing-select-padding-x: 10px;
+	--spacing-select-padding-y: 6px;
+	--spacing-select-gap: 8px;
+	--spacing-select-label-gap: 2px;
+	--spacing-select-label-hint-gap: 8px;
+	--spacing-select-hint-gap: 4px;
+	--spacing-select-icon-size: 16px;
+	--spacing-select-badge-gap: 4px;
+	--spacing-select-badge-padding-x: 6px;
+	--spacing-select-badge-padding-y: 2px;
+	--spacing-select-badge-close-size: 9px;
+	--spacing-select-additional-button-padding-x: 12px;
+
+	/* Select radius */
+	--radius-select: 12px;
+	--radius-select-badge: 7px;
+	--radius-select-error-hint: 10px;
+
+	/* Select colors */
+	--color-select-bg: #ffffff;
+	--color-select-border: #dfe1e6;
+	--color-select-border-hover: #d7d9de;
+	--color-select-border-focus: #dfe1e6;
+	--color-select-border-error: #f0001c;
+	--color-select-placeholder: #9999ad;
+	--color-select-text: #060510;
+	--color-select-icon: #9999ad;
+	--color-select-disabled-bg: #f7f7f8;
+	--color-select-disabled-border: #dfe1e6;
+	--color-select-error-hint-bg: #fff2f2;
+	--color-select-error-hint-text: #c80016;
+	--color-select-badge-bg: #ffffff;
+	--color-select-badge-border: #edeef2;
+	--color-select-badge-text: #6a6a7e;
+	--color-select-badge-close: #9999ad;
+
+	/* Tooltip spacing tokens */
+	--spacing-tooltip-padding-x: 8px;
+	--spacing-tooltip-padding-y: 2px;
+	--spacing-tooltip-arrow-size: 5px;
+	--spacing-tooltip-arrow-width-middle: 10px;
+	--spacing-tooltip-arrow-width-side: 30px;
+	--spacing-tooltip-offset: 8px;
+
+	/* Tooltip radius */
+	--radius-tooltip: 6px;
+
+	/* Tooltip colors */
+	--color-tooltip-bg: rgba(18, 18, 23, 0.7);
+	--color-tooltip-text: #ffffff;
+	--color-tooltip-arrow: rgba(18, 18, 23, 0.7);
+
+	/* Semantic colors */
+	--color-background: #f7f7f8;
+	--color-foreground: #060510;
+	--color-border: #dfe1e6;
+	--color-input: #dfe1e6;
+	--color-muted: #b8b9c5;
+	--color-muted-foreground: #6a6a7e;
+	--color-accent: #edeef2;
+	--color-accent-foreground: #060510;
+	--color-ring: oklch(0.708 0 0);
+	--color-ring-50: oklch(0.708 0 0 / 0.5);
+	--color-primary: oklch(0.205 0 0);
+	--color-primary-foreground: oklch(0.985 0 0);
+	--color-secondary: oklch(0.97 0 0);
+	--color-secondary-foreground: oklch(0.205 0 0);
+	--color-destructive: #f0001c;
+	--color-destructive-foreground: #ffffff;
+	--color-card: oklch(1 0 0);
+	--color-card-foreground: #060510;
+	--color-popover: oklch(1 0 0);
+	--color-popover-foreground: #060510;
+}
+
+:root {
+	--radius: 0.625rem;
+}
+
+@layer base {
+	* {
+		border-color: var(--color-border);
+		outline-color: var(--color-ring-50);
+	}
+	body {
+		background-color: var(--color-background);
+		color: var(--color-foreground);
+	}
+}
+
+@keyframes fadeInSlideUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
