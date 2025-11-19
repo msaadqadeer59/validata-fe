@@ -25,6 +25,15 @@ import SearchIcon from './search-icon.svg';
 import ValidataLogoComplete from './validata-logo-complete.svg';
 import ValidataOnlyIcon from './validata-only-icon.svg'
 import ExpandCollapseIcon from './expand-collapse-icon.svg'
+import UpgradeValidataImage from './upgrade-validata-image.svg'
+import NotificationIcon from './notification-icon.svg'
+import SupportIcon from './support-icon.svg'
+import UpgradeButtonIcon from './upgrade-button-icon.svg'
+import RefreshIcon from './refresh-icon.svg'
+import ResponseIcon from './response-icon.svg'
+import ChartIcon from './chart-icon.svg'
+import FrameIcon from './frame-icon.svg'
+
 export {
 	CreateSurveyOptionIcon,
 	LogicIcon,
@@ -53,4 +62,12 @@ export {
 	ValidataLogoComplete,
 	ValidataOnlyIcon,
 	ExpandCollapseIcon,
+	UpgradeValidataImage,
+	NotificationIcon,
+	SupportIcon,
+	UpgradeButtonIcon,
+	RefreshIcon,
+	ResponseIcon,
+	ChartIcon,
+	FrameIcon,
 };

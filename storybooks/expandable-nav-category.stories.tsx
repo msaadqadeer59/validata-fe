@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
-import { BaseNavCategory } from '../components/base-nav-category';
+import { ExpandableNavCategory } from '../components/expandable-nav-category';
 
 const meta = {
-  title: 'Components/BaseNavCategory',
-  component: BaseNavCategory,
+  title: 'Components/ExpandableNavCategory',
+  component: ExpandableNavCategory,
   parameters: {
     layout: 'centered',
   },
@@ -40,7 +40,7 @@ const meta = {
       description: 'Array of items to display when expanded',
     },
   },
-} satisfies Meta<typeof BaseNavCategory>;
+} satisfies Meta<typeof ExpandableNavCategory>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -211,10 +211,10 @@ export const Zero: Story = {
 export const AllStates: Story = {
   render: () => (
     <div className="flex flex-col gap-2">
-      <BaseNavCategory text="Recent Analysis" active={false} state="default" showNumber number="1" />
-      <BaseNavCategory text="Recent Analysis" active={false} state="hover" showNumber number="1" />
-      <BaseNavCategory text="Recent Analysis" active={true} state="default" showNumber number="1" />
-      <BaseNavCategory text="Recent Analysis" active={true} state="hover" showNumber number="1" />
+      <ExpandableNavCategory text="Recent Analysis" active={false} state="default" showNumber number="1" />
+      <ExpandableNavCategory text="Recent Analysis" active={false} state="hover" showNumber number="1" />
+      <ExpandableNavCategory text="Recent Analysis" active={true} state="default" showNumber number="1" />
+      <ExpandableNavCategory text="Recent Analysis" active={true} state="hover" showNumber number="1" />
     </div>
   ),
 };
@@ -254,7 +254,7 @@ export const Interactive: Story = {
   render: () => {
     const [expanded, setExpanded] = React.useState(false);
     return (
-      <BaseNavCategory
+      <ExpandableNavCategory
         text="Recent Analysis"
         active={expanded}
         showNumber
@@ -274,7 +274,7 @@ export const Interactive: Story = {
 export const MultipleCategories: Story = {
   render: () => (
     <div className="flex flex-col gap-1 w-[200px]">
-      <BaseNavCategory
+      <ExpandableNavCategory
         text="Recent Analysis"
         defaultExpanded={true}
         showNumber
@@ -285,7 +285,7 @@ export const MultipleCategories: Story = {
           { id: '3', label: 'Remote Only Analysis', color: 'gray' },
         ]}
       />
-      <BaseNavCategory
+      <ExpandableNavCategory
         text="Saved Reports"
         defaultExpanded={false}
         showNumber

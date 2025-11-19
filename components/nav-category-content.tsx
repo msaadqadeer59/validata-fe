@@ -1,21 +1,23 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { NavCategoryItem, type NavCategoryItemColor } from "./nav-category-item"
+import { SurveyItem, type SurveyItemColor } from "./survey-item"
 
 export interface NavCategoryItemData {
   id: string
   label: string
-  color?: NavCategoryItemColor
+  color?: NavCategoryItemColor | SurveyItemColor
   onClick?: () => void
 }
 
 interface NavCategoryContentProps {
   items: NavCategoryItemData[]
   className?: string
+  itemType?: "nav" | "survey"
 }
 
 const NavCategoryContent = React.forwardRef<HTMLDivElement, NavCategoryContentProps>(
-  ({ items, className }, ref) => {
+  ({ items, className, itemType = "nav" }, ref) => {
     return (
       <div
         ref={ref}
@@ -24,14 +26,26 @@ const NavCategoryContent = React.forwardRef<HTMLDivElement, NavCategoryContentPr
           className
         )}
       >
-        {items.map((item) => (
-          <NavCategoryItem
-            key={item.id}
-            label={item.label}
-            color={item.color}
-            onClick={item.onClick}
-          />
-        ))}
+        {items.map((item) => {
+          if (itemType === "survey") {
+            return (
+              <SurveyItem
+                key={item.id}
+                title={item.label}
+                color={item.color as SurveyItemColor}
+                onClick={item.onClick}
+              />
+            )
+          }
+          return (
+            <NavCategoryItem
+              key={item.id}
+              label={item.label}
+              color={item.color as NavCategoryItemColor}
+              onClick={item.onClick}
+            />
+          )
+        })}
       </div>
     )
   }

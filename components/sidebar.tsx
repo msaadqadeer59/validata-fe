@@ -12,7 +12,7 @@ import {
   PlusSquareIcon,
 } from "@/assets"
 import { SearchBar } from "./search-bar"
-import { BaseNavCategory } from "./base-nav-category"
+import { ExpandableNavCategory } from "./expandable-nav-category"
 import { NavCategoryItem } from "./nav-category-item"
 import { SidebarMenuItem } from "./sidebar-menu-item"
 import { Avatar } from "./avatar"
@@ -216,7 +216,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
             <>
               {/* Surveys Category */}
               <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0 w-full">
-                <BaseNavCategory
+                <ExpandableNavCategory
                   text="Surveys"
                   defaultExpanded={surveysExpanded}
                   onToggle={setSurveysExpanded}
@@ -232,7 +232,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
 
               {/* Reports Category */}
               <div className="basis-0 content-stretch flex flex-col gap-1 grow items-start min-h-0 min-w-0 relative shrink-0 w-full">
-                <BaseNavCategory
+                <ExpandableNavCategory
                   text="Recent Analysis"
                   defaultExpanded={reportsExpanded}
                   onToggle={setReportsExpanded}

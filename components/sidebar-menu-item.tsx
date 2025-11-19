@@ -7,7 +7,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { LucideIcon } from "lucide-react"
 
 const sidebarMenuItemVariants = cva(
-  "box-border content-stretch flex gap-1 items-center justify-start h-8 rounded-button transition-colors outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+  "box-border content-stretch flex gap-1 items-center justify-start h-8 rounded-[10px] transition-colors outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
   {
     variants: {
       active: {
@@ -57,7 +57,7 @@ const sidebarMenuItemVariants = cva(
 
 interface SidebarMenuItemProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof sidebarMenuItemVariants> {
+  VariantProps<typeof sidebarMenuItemVariants> {
   icon: LucideIcon | React.ComponentType<{ className?: string }>
   label: string
   count?: number | string
@@ -150,7 +150,7 @@ const SidebarMenuItem = React.forwardRef<HTMLButtonElement, SidebarMenuItemProps
           <>
             <p
               className={cn(
-                "basis-0 font-sans font-medium grow leading-5 min-h-px min-w-px not-italic relative shrink-0 text-sm tracking-tight text-left",
+                "basis-0 font-sans font-medium grow leading-5 min-h-px min-w-px not-italic relative shrink-0 text-sm tracking-[-0.28px] text-left",
                 textColor
               )}
             >
@@ -159,10 +159,14 @@ const SidebarMenuItem = React.forwardRef<HTMLButtonElement, SidebarMenuItemProps
             {count !== undefined && (
               <Count
                 count={count}
-                className="bg-white border border-gray-200 min-w-[20px] relative rounded-md shrink-0"
+                className="bg-white border border-gray-200 min-w-[20px] relative rounded-[6px] shrink-0  "
               />
             )}
-            {badge && <Badge variant="green">{badge}</Badge>}
+            {badge && (
+              <Badge variant="green" className="rounded-[6px] px-1">
+                {badge}
+              </Badge>
+            )}
           </>
         )}
         {collapsed && (

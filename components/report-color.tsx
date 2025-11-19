@@ -29,12 +29,12 @@ const dotColorMap: Record<NonNullable<VariantProps<typeof reportColorVariants>["
 }
 
 interface ReportColorProps
-    extends React.HTMLAttributes<HTMLDivElement>,
+    extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
     VariantProps<typeof reportColorVariants> { }
 
 const ReportColor = React.forwardRef<HTMLDivElement, ReportColorProps>(
     ({ className, color = "gray", ...props }, ref) => {
-        const dotColor = dotColorMap[color || "gray"]
+        const dotColor = dotColorMap[(color || "gray") as keyof typeof dotColorMap]
 
         return (
             <div
@@ -42,8 +42,7 @@ const ReportColor = React.forwardRef<HTMLDivElement, ReportColorProps>(
                 className={cn(reportColorVariants({ color }), className)}
                 {...props}
             >
-                {/* <div className={cn("w-2 h-2 rounded-full", dotColor)} /> */}
-                <div className="rounded-full bg-red-500 border border-solid border-red-200" />
+                <div className={cn("size-[4px] rounded-full", dotColor)} />
             </div>
         )
     }

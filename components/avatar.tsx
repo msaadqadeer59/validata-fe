@@ -38,7 +38,7 @@ const avatarVariants = cva(
       {
         size: "32",
         radius: "rectangle",
-        class: "rounded-[10px]",
+        class: "rounded-[8px]",
       },
       {
         size: "40",
@@ -93,7 +93,7 @@ function Avatar({
             size === "12" && radius === "rectangle" ? "rounded-[4px]" : "",
             size === "16" && radius === "rectangle" ? "rounded-[5px]" : "",
             size === "24" && radius === "rectangle" ? "rounded-[7.5px]" : "",
-            size === "32" && radius === "rectangle" ? "rounded-[10px]" : "",
+            size === "32" && radius === "rectangle" ? "rounded-[8px]" : "",
             size === "40" && radius === "rectangle" ? "rounded-[12px]" : "",
             size === "72" && radius === "rectangle" ? "rounded-[16px]" : ""
           )}

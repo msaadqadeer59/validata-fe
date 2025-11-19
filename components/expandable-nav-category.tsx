@@ -1,11 +1,11 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { ChevronRight, ChevronDown } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import { NavCategoryContent, type NavCategoryItemData } from "./nav-category-content"
 
-const baseNavCategoryVariants = cva(
-  "box-border content-stretch flex gap-1 items-center h-6 p-1 rounded-md transition-colors outline-none cursor-pointer",
+const expandableNavCategoryVariants = cva(
+  "box-border content-stretch flex gap-1 items-center p-1 h-6 rounded-[6px] transition-colors outline-none cursor-pointer",
   {
     variants: {
       active: {
@@ -31,13 +31,14 @@ const baseNavCategoryVariants = cva(
   }
 )
 
-interface BaseNavCategoryProps
+interface ExpandableNavCategoryProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "type">,
-    VariantProps<typeof baseNavCategoryVariants> {
+  VariantProps<typeof expandableNavCategoryVariants> {
   text: string
   showNumber?: boolean
   number?: string | number
   items?: NavCategoryItemData[]
+  itemType?: "nav" | "survey"
   defaultExpanded?: boolean
   onToggle?: (expanded: boolean) => void
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -45,7 +46,7 @@ interface BaseNavCategoryProps
   onMouseLeave?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const BaseNavCategory = React.forwardRef<HTMLDivElement, BaseNavCategoryProps>(
+const ExpandableNavCategory = React.forwardRef<HTMLDivElement, ExpandableNavCategoryProps>(
   (
     {
       className,
@@ -55,6 +56,7 @@ const BaseNavCategory = React.forwardRef<HTMLDivElement, BaseNavCategoryProps>(
       showNumber = true,
       number,
       items = [],
+      itemType = "nav",
       defaultExpanded = false,
       onToggle,
       onClick,
@@ -94,15 +96,15 @@ const BaseNavCategory = React.forwardRef<HTMLDivElement, BaseNavCategoryProps>(
       onMouseLeave?.(e)
     }
 
-    const isHoverOrActive = effectiveState === "hover" || isExpanded
-    const textColor = isHoverOrActive ? "text-gray-700" : "text-gray-500"
-    const chevronColor = isHoverOrActive ? "text-gray-600" : "text-gray-500"
+    // Text color always gray-500 per Figma design
+    const textColor = "text-gray-500"
+    const chevronColor = "text-gray-500"
 
     return (
       <div ref={ref} className={cn("content-stretch flex flex-col gap-1 items-start relative size-full", className)}>
         <button
           className={cn(
-            baseNavCategoryVariants({
+            expandableNavCategoryVariants({
               active: isExpanded,
               state: effectiveState,
             }),
@@ -113,14 +115,15 @@ const BaseNavCategory = React.forwardRef<HTMLDivElement, BaseNavCategoryProps>(
           onClick={handleClick}
           {...props}
         >
-          {isExpanded ? (
-            <ChevronDown className={cn("size-3 shrink-0", chevronColor)} />
-          ) : (
-            <ChevronRight className={cn("size-3 shrink-0", chevronColor)} />
-          )}
+          <div className={cn(
+            "shrink-0 size-3 transition-transform duration-200 ease-in-out",
+            isExpanded ? "rotate-90" : "rotate-0"
+          )}>
+            <ChevronRight className={cn("size-full", chevronColor)} />
+          </div>
           <p
             className={cn(
-              "basis-0 font-sans font-medium grow leading-4 min-h-px min-w-px not-italic relative shrink-0 text-xs tracking-tight text-left",
+              "basis-0 font-sans font-medium grow leading-4 min-h-px min-w-px not-italic relative shrink-0 text-xs tracking-[-0.24px] text-left",
               textColor
             )}
           >
@@ -139,14 +142,21 @@ const BaseNavCategory = React.forwardRef<HTMLDivElement, BaseNavCategoryProps>(
             </div>
           )}
         </button>
-        {isExpanded && items.length > 0 && <NavCategoryContent items={items} />}
+        <div
+          className={cn(
+            "overflow-hidden transition-all duration-200 ease-in-out",
+            isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          )}
+        >
+          {items.length > 0 && <NavCategoryContent items={items} itemType={itemType} />}
+        </div>
       </div>
     )
   }
 )
 
-BaseNavCategory.displayName = "BaseNavCategory"
+ExpandableNavCategory.displayName = "ExpandableNavCategory"
 
-export { BaseNavCategory, baseNavCategoryVariants }
-export type { BaseNavCategoryProps }
+export { ExpandableNavCategory, expandableNavCategoryVariants }
+export type { ExpandableNavCategoryProps }
 

@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const countVariants = cva(
-  "box-border content-stretch flex flex-col gap-2 items-center justify-center min-w-inherit overflow-clip px-1 py-0.5 relative rounded-md",
+  "box-border content-stretch flex flex-col gap-2 items-center justify-center min-w-inherit overflow-clip px-[4px] relative rounded-md",
   {
     variants: {
       variant: {
@@ -19,7 +19,7 @@ const countVariants = cva(
 
 interface CountProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof countVariants> {
+  VariantProps<typeof countVariants> {
   count: number | string
 }
 
