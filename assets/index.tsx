@@ -21,7 +21,10 @@ import ImproveWithAIIcon from './use-ai-icon.svg';
 import InfoIcon from './info-icon.svg';
 import OptionDeleteIcon from './option-delete-icon.svg';
 import CreateSurveyOptionIcon from './create-survey-option.svg';
-
+import SearchIcon from './search-icon.svg';
+import ValidataLogoComplete from './validata-logo-complete.svg';
+import ValidataOnlyIcon from './validata-only-icon.svg'
+import ExpandCollapseIcon from './expand-collapse-icon.svg'
 export {
 	CreateSurveyOptionIcon,
 	LogicIcon,
@@ -46,4 +49,8 @@ export {
 	ImproveWithAIIcon,
 	InfoIcon,
 	OptionDeleteIcon,
+	SearchIcon,
+	ValidataLogoComplete,
+	ValidataOnlyIcon,
+	ExpandCollapseIcon,
 };
