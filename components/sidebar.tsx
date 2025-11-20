@@ -13,12 +13,37 @@ import {
 } from "@/assets"
 import { SearchBar } from "./search-bar"
 import { ExpandableNavCategory } from "./expandable-nav-category"
-import { NavCategoryItem } from "./nav-category-item"
 import { SidebarMenuItem } from "./sidebar-menu-item"
 import { Avatar } from "./avatar"
-import { Count } from "./count"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
-import { Bell, HelpCircle, ChevronDown } from "lucide-react"
+import { Bell, ChevronDown } from "lucide-react"
+
+// Icon wrapper components for Image-based icons
+const SupportIconWrapper = ({ className }: { className?: string }) => (
+  <div className={cn("overflow-clip relative shrink-0 size-4", className)}>
+    <Image src={InfoIcon} alt="Support" width={16} height={16} className="size-4" />
+  </div>
+)
+
+const SettingsIconWrapper = ({ className }: { className?: string }) => (
+  <div className={cn("overflow-clip relative shrink-0 size-4", className)}>
+    <Image src={SettingsIcon} alt="Settings" width={16} height={16} className="size-4" />
+  </div>
+)
+
+// Notification icon with badge - SidebarMenuItem wraps this in a relative div, so badge can be absolutely positioned
+const NotificationIconWithBadge = ({ className }: { className?: string }) => {
+  // Extract text color from className (SidebarMenuItem passes iconColor as className)
+  const iconColorMatch = className?.match(/text-[\w-]+/)
+  const iconColor = iconColorMatch ? iconColorMatch[0] : "text-gray-500"
+
+  return (
+    <>
+      <Bell className={cn("size-4", iconColor)} />
+      <div className="absolute bg-blue-600 right-0 rounded-full size-1.5 top-0" />
+    </>
+  )
+}
 
 const sidebarVariants = cva(
   "bg-white border-r border-gray-100 box-border flex flex-col items-start relative h-full",
@@ -37,7 +62,7 @@ const sidebarVariants = cva(
 
 interface SidebarProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof sidebarVariants> {
+  VariantProps<typeof sidebarVariants> {
   showItems?: boolean
   onToggle?: () => void
 }
@@ -81,17 +106,17 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     const sidebarData: SidebarData = {
       surveys: showItems
         ? [
-            { id: "1", label: "Demo project", color: "blue" },
-            { id: "2", label: "Remote survey", color: "green" },
-            { id: "3", label: "On-site survey", color: "orange" },
-          ]
+          { id: "1", label: "Demo project", color: "blue" },
+          { id: "2", label: "Remote survey", color: "green" },
+          { id: "3", label: "On-site survey", color: "orange" },
+        ]
         : [],
       reports: showItems
         ? [
-            { id: "1", label: "Workplace Transformation", color: "blue" },
-            { id: "2", label: "Age Focus Analysis", color: "orange" },
-            { id: "3", label: "Remote Only Analysis", color: "gray" },
-          ]
+          { id: "1", label: "Workplace Transformation", color: "blue" },
+          { id: "2", label: "Age Focus Analysis", color: "orange" },
+          { id: "3", label: "Remote Only Analysis", color: "gray" },
+        ]
         : [],
       notificationCount: 3,
       userName: "Maher Jilani",
@@ -297,123 +322,29 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           {/* Menu List */}
           <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0 w-full">
             {/* Notifications */}
-            {collapsed ? (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    className="box-border content-stretch flex gap-1 h-8 items-center justify-center p-1 relative rounded-button shrink-0 w-full hover:bg-gray-50 transition-colors relative"
-                  >
-                    <div className="content-stretch flex gap-2 items-center justify-center relative shrink-0 size-6">
-                      <div className="relative shrink-0 size-4">
-                        <Bell className="size-4 text-gray-500" />
-                        <div className="absolute bg-blue-600 right-0 rounded-full size-1.5 top-0" />
-                      </div>
-                    </div>
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right">Notifications</TooltipContent>
-              </Tooltip>
-            ) : (
-              <button
-                className="box-border content-stretch flex gap-1 h-8 items-center pl-1 pr-1.5 py-1 relative rounded-button shrink-0 w-full hover:bg-gray-50 transition-colors"
-              >
-                <div className="content-stretch flex gap-2 items-center justify-center relative shrink-0 size-6">
-                  <Bell className="size-4 text-gray-500" />
-                </div>
-                <p className="basis-0 font-sans font-medium grow leading-5 min-h-0 min-w-0 not-italic relative shrink-0 text-sm tracking-tight text-left text-gray-600">
-                  Notifications
-                </p>
-                {sidebarData.notificationCount && (
-                  <Count count={sidebarData.notificationCount} />
-                )}
-              </button>
-            )}
+            <SidebarMenuItem
+              icon={NotificationIconWithBadge}
+              label="Notifications"
+              count={sidebarData.notificationCount}
+              collapsed={collapsed}
+              tooltipText="Notifications"
+            />
 
             {/* Support */}
-            {collapsed ? (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    className="box-border content-stretch flex gap-1 h-8 items-center justify-center p-1 relative rounded-button shrink-0 w-full hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="content-stretch flex gap-2 items-center justify-center relative shrink-0 size-6">
-                      <div className="overflow-clip relative shrink-0 size-4">
-                        <Image
-                          src={InfoIcon}
-                          alt="Support"
-                          width={16}
-                          height={16}
-                          className="size-4"
-                        />
-                      </div>
-                    </div>
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right">Support</TooltipContent>
-              </Tooltip>
-            ) : (
-              <button
-                className="box-border content-stretch flex gap-1 h-8 items-center pl-1 pr-1.5 py-1 relative rounded-button shrink-0 w-full hover:bg-gray-50 transition-colors"
-              >
-                <div className="content-stretch flex gap-2 items-center justify-center relative shrink-0 size-6">
-                  <div className="overflow-clip relative shrink-0 size-4">
-                    <Image
-                      src={InfoIcon}
-                      alt="Support"
-                      width={16}
-                      height={16}
-                      className="size-4"
-                    />
-                  </div>
-                </div>
-                <p className="basis-0 font-sans font-medium grow leading-5 min-h-0 min-w-0 not-italic relative shrink-0 text-sm tracking-tight text-left text-gray-600">
-                  Support
-                </p>
-              </button>
-            )}
+            <SidebarMenuItem
+              icon={SupportIconWrapper}
+              label="Support"
+              collapsed={collapsed}
+              tooltipText="Support"
+            />
 
             {/* Settings */}
-            {collapsed ? (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    className="box-border content-stretch flex gap-1 h-8 items-center justify-center p-1 relative rounded-button shrink-0 w-full hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="content-stretch flex gap-2 items-center justify-center relative shrink-0 size-6">
-                      <div className="overflow-clip relative shrink-0 size-4">
-                        <Image
-                          src={SettingsIcon}
-                          alt="Settings"
-                          width={16}
-                          height={16}
-                          className="size-4"
-                        />
-                      </div>
-                    </div>
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right">Settings</TooltipContent>
-              </Tooltip>
-            ) : (
-              <button
-                className="box-border content-stretch flex gap-1 h-8 items-center pl-1 pr-1.5 py-1 relative rounded-button shrink-0 w-full hover:bg-gray-50 transition-colors"
-              >
-                <div className="content-stretch flex gap-2 items-center justify-center relative shrink-0 size-6">
-                  <div className="overflow-clip relative shrink-0 size-4">
-                    <Image
-                      src={SettingsIcon}
-                      alt="Settings"
-                      width={16}
-                      height={16}
-                      className="size-4"
-                    />
-                  </div>
-                </div>
-                <p className="basis-0 font-sans font-medium grow leading-5 min-h-0 min-w-0 not-italic relative shrink-0 text-sm tracking-tight text-left text-gray-600">
-                  Settings
-                </p>
-              </button>
-            )}
+            <SidebarMenuItem
+              icon={SettingsIconWrapper}
+              label="Settings"
+              collapsed={collapsed}
+              tooltipText="Settings"
+            />
           </div>
 
           {/* Upgrade Card */}

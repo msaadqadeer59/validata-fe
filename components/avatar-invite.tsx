@@ -1,26 +1,9 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { Avatar, type AvatarColor } from "./avatar"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
-const tooltipVariants = cva(
-  "absolute backdrop-blur-sm backdrop-filter content-stretch flex flex-col items-center left-1/2 translate-x-[-50%] transition-all pointer-events-none",
-  {
-    variants: {
-      state: {
-        default: "opacity-0 top-[24px]",
-        hover: "opacity-100 top-[32px]",
-      },
-    },
-    defaultVariants: {
-      state: "default",
-    },
-  }
-)
-
-interface AvatarInviteProps
-  extends Omit<React.ComponentProps<"div">, "children">,
-  VariantProps<typeof tooltipVariants> {
+interface AvatarInviteProps extends Omit<React.ComponentProps<"div">, "children"> {
   src?: string
   alt?: string
   name: string
@@ -47,7 +30,6 @@ function getColorFromName(name: string): AvatarColor {
 
 function AvatarInvite({
   className,
-  state = "default",
   src,
   alt,
   name,
@@ -56,58 +38,43 @@ function AvatarInvite({
   onClick,
   ...props
 }: AvatarInviteProps) {
-  const [isHovered, setIsHovered] = React.useState(false)
-  const effectiveState = state === "hover" || isHovered ? "hover" : "default"
-
   // Use provided color or determine from name
   const avatarColor = color || getColorFromName(name)
 
-  // Arrow SVG - always rendered as per Figma design
-  const arrow = (
-    <div className="h-[5px] relative shrink-0 w-[10.001px]">
-      <div className="absolute bottom-0 left-0 right-0 top-[8.28%]">
-        <svg
-          width={10}
-          height={5}
-          viewBox="0 0 10 5"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="block max-w-none size-full"
-        >
-          <path
-            d="M5 5L0 0H10L5 5Z"
-            fill="rgba(18,18,23,0.7)"
-          />
-        </svg>
-      </div>
-    </div>
-  )
-
   return (
-    <div
-      className={cn("relative size-[24px]", className)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={onClick}
-      {...props}
-    >
-      {/* Base Avatar with white border - matching Figma: border border-solid border-white */}
-      <div className="absolute border border-solid border-white inset-0 rounded-[99px]">
-        <Avatar
-          src={src}
-          alt={alt || name}
-          name={name}
-          size="24"
-          radius="circle"
-          color={avatarColor}
-          className="size-full"
-        />
-      </div>
-
-      {/* Tooltip - matching Figma design exactly */}
-      <div className={cn(tooltipVariants({ state: effectiveState }))}>
-        {arrow}
-        <div className="bg-[rgba(18,18,23,0.7)] box-border content-stretch flex flex-col items-center justify-center not-italic overflow-clip pb-[7px] pt-[6px] px-[8px] relative rounded-[6px] shrink-0 text-nowrap whitespace-pre">
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div
+          className={cn("relative size-[24px] cursor-pointer", className)}
+          onClick={onClick}
+          {...props}
+        >
+          {/* Base Avatar with white border - matching Figma: border border-solid border-white */}
+          <div className="absolute border border-solid border-white inset-0 rounded-[99px]">
+            <Avatar
+              src={src}
+              alt={alt || name}
+              name={name}
+              size="24"
+              radius="circle"
+              color={avatarColor}
+              className="size-full"
+            />
+          </div>
+        </div>
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        sideOffset={8}
+        asChild={true}
+        className="bg-[rgba(18,18,23,0.7)] backdrop-blur-sm backdrop-filter flex flex-col items-center justify-center overflow-clip pb-[7px] pt-[6px] px-[8px] rounded-[6px] text-nowrap whitespace-pre"
+        style={{
+          "--color-tooltip-bg": "rgba(18,18,23,0.7)",
+          "--color-tooltip-text": "#ffffff",
+          "--color-tooltip-arrow": "rgba(18,18,23,0.7)",
+        } as React.CSSProperties}
+      >
+        <div className="flex flex-col items-center">
           <p className="font-sans font-medium leading-[16px] relative shrink-0 text-[12px] text-white tracking-[-0.24px]">
             {name}
           </p>
@@ -115,11 +82,11 @@ function AvatarInvite({
             {role}
           </p>
         </div>
-      </div>
-    </div>
+      </TooltipContent>
+    </Tooltip>
   )
 }
 
-export { AvatarInvite, tooltipVariants }
+export { AvatarInvite }
 export type { AvatarInviteProps }
 

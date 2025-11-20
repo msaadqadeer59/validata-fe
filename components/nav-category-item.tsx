@@ -23,7 +23,7 @@ const NavCategoryItem = React.forwardRef<HTMLButtonElement, NavCategoryItemProps
         <div className="content-stretch flex gap-2 items-center justify-center relative shrink-0 size-6">
           <ReportColor color={color} />
         </div>
-        <p className="basis-0 font-sans font-medium grow leading-5 min-h-px min-w-px not-italic relative shrink-0 text-sm tracking-tight text-left text-gray-600">
+        <p className="text-[#6A6A7E] basis-0 font-sans font-medium grow leading-5 min-h-px min-w-px not-italic relative shrink-0 text-sm tracking-tight text-left ">
           {label}
         </p>
       </button>

@@ -200,6 +200,7 @@ interface TooltipContentProps
   extends React.ComponentProps<typeof TooltipPrimitive.Content>,
   VariantProps<typeof tooltipContentVariants> {
   arrowPlacement?: "left" | "middle" | "right"
+  asChild?: boolean
 }
 
 function TooltipContent({
@@ -208,9 +209,12 @@ function TooltipContent({
   children,
   arrowPlacement = "middle",
   side = "top",
+  asChild = false,
   ...props
 }: TooltipContentProps & { side?: "top" | "right" | "bottom" | "left" }) {
-  const contentElement = (
+  const contentElement = asChild ? (
+    children
+  ) : (
     <p className="font-sans font-medium leading-[20px] max-w-[400px] text-[12px] text-[var(--color-tooltip-text)] tracking-[-0.24px] whitespace-pre">
       {children}
     </p>

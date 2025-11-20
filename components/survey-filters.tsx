@@ -22,7 +22,7 @@ export function SurveyFilters({
   return (
     <div
       className={cn(
-        "box-border content-stretch flex items-center pb-0 pt-[16px] px-[16px] relative shrink-0 w-full",
+        "box-border content-stretch flex items-center pb-0 px-[16px] relative shrink-0 w-full",
         className
       )}
       {...props}

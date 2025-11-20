@@ -11,59 +11,34 @@ const sidebarMenuItemVariants = cva(
   {
     variants: {
       active: {
-        true: "bg-gray-50",
-        false: "",
-      },
-      state: {
-        default: "",
-        hover: "",
-        focus: "overflow-clip shadow-[0px_0px_0px_2px_#ffffff,0px_0px_0px_4px_#060510]",
-        disabled: "opacity-30 cursor-not-allowed",
+        true: "bg-gray-50 hover:bg-gray-100 focus-visible:bg-gray-50",
+        false: "hover:bg-gray-50 focus-visible:bg-gray-50",
       },
       collapsed: {
         true: "justify-center p-1 size-8",
         false: "pl-1 pr-1.5 py-1 w-[253px]",
       },
+      disabled: {
+        true: "opacity-30 cursor-not-allowed",
+        false: "",
+      },
     },
-    compoundVariants: [
-      {
-        active: true,
-        state: "hover",
-        className: "bg-gray-100",
-      },
-      {
-        active: true,
-        state: "focus",
-        className: "bg-gray-50",
-      },
-      {
-        active: false,
-        state: "hover",
-        className: "bg-gray-50",
-      },
-      {
-        active: false,
-        state: "focus",
-        className: "bg-gray-50",
-      },
-    ],
     defaultVariants: {
       active: false,
-      state: "default",
       collapsed: false,
+      disabled: false,
     },
   }
 )
 
 interface SidebarMenuItemProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof sidebarMenuItemVariants> {
+  Omit<VariantProps<typeof sidebarMenuItemVariants>, "disabled"> {
   icon: LucideIcon | React.ComponentType<{ className?: string }>
   label: string
   count?: number | string
   badge?: string
   tooltipText?: string
-  asChild?: boolean
 }
 
 const SidebarMenuItem = React.forwardRef<HTMLButtonElement, SidebarMenuItemProps>(
@@ -71,87 +46,43 @@ const SidebarMenuItem = React.forwardRef<HTMLButtonElement, SidebarMenuItemProps
     {
       className,
       active = false,
-      state = "default",
       collapsed = false,
+      disabled,
       icon: Icon,
       label,
       count,
       badge,
       tooltipText,
-      disabled,
-      onMouseEnter,
-      onMouseLeave,
-      onFocus,
-      onBlur,
       ...props
     },
     ref
   ) => {
-    const [internalState, setInternalState] = React.useState<"default" | "hover" | "focus">("default")
-    const effectiveState = disabled ? "disabled" : (state !== "default" ? state : internalState)
-    const effectiveActive = disabled ? active : active
-
-    const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (!disabled && state === "default") {
-        setInternalState("hover")
-      }
-      onMouseEnter?.(e)
-    }
-
-    const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (!disabled && state === "default") {
-        setInternalState("default")
-      }
-      onMouseLeave?.(e)
-    }
-
-    const handleFocus = (e: React.FocusEvent<HTMLButtonElement>) => {
-      if (!disabled && state === "default") {
-        setInternalState("focus")
-      }
-      onFocus?.(e)
-    }
-
-    const handleBlur = (e: React.FocusEvent<HTMLButtonElement>) => {
-      if (!disabled && state === "default") {
-        setInternalState("default")
-      }
-      onBlur?.(e)
-    }
-
-    const iconColor = React.useMemo(() => {
-      if (effectiveState === "disabled") {
-        return "text-gray-500"
-      }
-      if (effectiveActive || effectiveState === "hover" || effectiveState === "focus") {
-        return "text-gray-950"
-      }
-      return "text-gray-500"
-    }, [effectiveActive, effectiveState])
-
-    const textColor = React.useMemo(() => {
-      if (effectiveState === "disabled") {
-        return "text-gray-600"
-      }
-      if (effectiveActive || effectiveState === "hover" || effectiveState === "focus") {
-        return "text-gray-950"
-      }
-      return "text-gray-600"
-    }, [effectiveActive, effectiveState])
+    const isDisabled = disabled ?? false
 
     const content = (
       <>
         <div className="content-stretch flex items-center justify-center relative shrink-0 size-6">
           <div className="overflow-clip relative shrink-0 size-4">
-            <Icon className={cn("size-4", iconColor)} />
+            <Icon className={cn(
+              "size-4 transition-colors",
+              isDisabled
+                ? "text-gray-500"
+                : active
+                  ? "text-gray-950 group-hover:text-gray-950 group-focus-visible:text-gray-950"
+                  : "text-gray-500 group-hover:text-gray-950 group-focus-visible:text-gray-950"
+            )} />
           </div>
         </div>
         {!collapsed && (
           <>
             <p
               className={cn(
-                "basis-0 font-sans font-medium grow leading-5 min-h-px min-w-px not-italic relative shrink-0 text-sm tracking-[-0.28px] text-left",
-                textColor
+                "basis-0 font-sans font-medium grow leading-5 min-h-px min-w-px not-italic relative shrink-0 text-sm tracking-[-0.28px] text-left transition-colors",
+                isDisabled
+                  ? "text-[#6A6A7E] opacity-30"
+                  : active
+                    ? "text-[#6A6A7E]"
+                    : "text-[#6A6A7E]"
               )}
             >
               {label}
@@ -170,7 +101,7 @@ const SidebarMenuItem = React.forwardRef<HTMLButtonElement, SidebarMenuItemProps
           </>
         )}
         {collapsed && (
-          <p className="absolute font-sans font-medium leading-5 left-8 not-italic opacity-0 text-gray-600 text-sm top-1.5 tracking-tight w-[215px] pointer-events-none">
+          <p className="absolute font-sans font-medium leading-5 left-8 not-italic opacity-0 text-[#6A6A7E] text-sm top-1.5 tracking-tight w-[215px] pointer-events-none">
             {label}
           </p>
         )}
@@ -182,17 +113,14 @@ const SidebarMenuItem = React.forwardRef<HTMLButtonElement, SidebarMenuItemProps
         ref={ref}
         className={cn(
           sidebarMenuItemVariants({
-            active: effectiveActive,
-            state: effectiveState,
+            active,
             collapsed,
+            disabled: isDisabled,
           }),
+          "group focus-visible:overflow-clip focus-visible:shadow-[0px_0px_0px_2px_#ffffff,0px_0px_0px_4px_#060510]",
           className
         )}
-        disabled={disabled}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        disabled={isDisabled}
         {...props}
       >
         {content}

@@ -101,7 +101,7 @@ export function Topbar({
         <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0">
           <div className="bg-white border border-[#dfe1e6] border-solid box-border content-stretch flex gap-px items-center relative rounded-[10px] shrink-0 w-full">
             {/* Avatars */}
-            <div className="bg-white box-border content-stretch flex h-[32px] items-center pl-[4px] pr-[8px] py-[2px] relative rounded-bl-[10px] rounded-tl-[10px] shrink-0">
+            <div className="bg-white box-border content-stretch flex h-[32px] items-center pl-[4px] pr-[8px] py-[2px] relative rounded-bl-[10px] rounded-tl-[10px] shrink-0 cursor-pointer">
               {avatars.map((avatar, index) => (
                 <AvatarInvite
                   key={index}
@@ -118,7 +118,7 @@ export function Topbar({
             {/* Invite Button */}
             <button
               onClick={onInviteClick}
-              className="border-l border-[#dfe1e6] border-solid relative rounded-br-[10px] rounded-tr-[10px] size-full"
+              className="border-l border-[#dfe1e6] border-solid relative rounded-br-[10px] rounded-tr-[10px] size-full cursor-pointer"
             >
               <div className="box-border content-stretch flex items-center justify-center overflow-clip px-[8px] py-[4px] rounded-[inherit] size-full">
                 <p className="font-sans font-medium leading-[20px] not-italic relative shrink-0 text-[#060510] text-[14px] text-nowrap tracking-[-0.28px] whitespace-pre">
