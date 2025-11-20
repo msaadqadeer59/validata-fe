@@ -17,7 +17,7 @@ import {
 	SidebarTrigger,
 	useSidebar,
 } from '@/components/ui/sidebar';
-import { CreateSurveyOptionIcon, ValidataLogoComplete, ValidataOnlyIcon, UpgradeValidataImage, NotificationIcon, SupportIcon, SettingsIcon, UpgradeButtonIcon, SearchIcon } from '@/assets';
+import { CreateSurveyOptionIcon, ValidataLogoComplete, ValidataOnlyIcon, UpgradeValidataImage, NotificationIcon, SupportIcon, SettingsIcon, UpgradeButtonIcon, SearchIcon, ChevronSelectorIcon } from '@/assets';
 import Image from 'next/image';
 import { SearchBar } from '@/components/search-bar';
 import { ExpandableNavCategory } from './expandable-nav-category';
@@ -376,7 +376,7 @@ function SidebarBottomSection() {
 					</p>
 				</div>
 				<div className="flex gap-2 items-center justify-center relative rounded-lg shrink-0 size-6">
-					<ChevronDown className="size-4 text-gray-500" />
+					<Image src={ChevronSelectorIcon} alt="Chevron Selector" width={16} height={16} className="size-4" />
 				</div>
 			</div>
 		</div>

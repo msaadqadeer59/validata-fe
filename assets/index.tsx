@@ -36,8 +36,10 @@ import FrameIcon from './frame-icon.svg'
 import SurveyIcon from './survey-icon.svg'
 import FilterIcon from './filter-icon.svg'
 import SortIcon from './sort-icon.svg'
+import ChevronSelectorIcon from './chevron-selector-icon.svg'
 
 export {
+	ChevronSelectorIcon,
 	CreateSurveyOptionIcon,
 	FilterIcon,
 	SortIcon,

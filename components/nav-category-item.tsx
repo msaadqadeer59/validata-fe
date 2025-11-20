@@ -15,7 +15,7 @@ const NavCategoryItem = React.forwardRef<HTMLButtonElement, NavCategoryItemProps
       <button
         ref={ref}
         className={cn(
-          "box-border content-stretch flex gap-1 items-center p-1 relative rounded-button shrink-0 w-full transition-colors hover:bg-gray-50 outline-none",
+          "cursor-pointer box-border content-stretch flex gap-1 items-center p-1 relative rounded-button shrink-0 w-full transition-colors hover:bg-gray-50 outline-none",
           className
         )}
         {...props}
