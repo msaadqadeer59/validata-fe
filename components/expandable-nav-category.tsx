@@ -144,7 +144,7 @@ const ExpandableNavCategory = React.forwardRef<HTMLDivElement, ExpandableNavCate
         </button>
         <div
           className={cn(
-            "overflow-hidden transition-all duration-200 ease-in-out",
+            "overflow-hidden transition-all duration-200 ease-in-out w-full",
             isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
           )}
         >

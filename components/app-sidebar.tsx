@@ -113,16 +113,23 @@ function RecentAnalysisSection() {
 const surveyItems: NavCategoryItemData[] = [
 	{
 		id: '1',
+		label: 'Untitled survey',
+		color: 'green',
+		count: '100',
+		badge: '24 new',
+	},
+	{
+		id: '2',
 		label: 'Demo project',
 		color: 'blue',
 	},
 	{
-		id: '2',
+		id: '3',
 		label: 'Remote survey',
 		color: 'green',
 	},
 	{
-		id: '3',
+		id: '4',
 		label: 'On-site survey',
 		color: 'orange',
 	},
@@ -357,8 +364,8 @@ function SidebarBottomSection() {
 				<Avatar
 					size="32"
 					radius="rectangle"
-					name="Maher"
-					src="http://localhost:3845/assets/5b560cc75a7a523f1d9e885b7195a370cc4e0888.png"
+					name="Maher Jilani"
+					color="green"
 				/>
 				<div className="basis-0 flex flex-col grow h-9 items-start justify-center min-h-0 min-w-0 relative shrink-0">
 					<p className="font-sans font-medium leading-5 relative shrink-0 text-sm text-gray-950 text-nowrap tracking-[-0.28px] whitespace-pre">
@@ -425,6 +432,7 @@ function SidebarBottomSectionCollapsed() {
 					size="32"
 					radius="rectangle"
 					name="Maher Jilani"
+					color="green"
 				/>
 			</div>
 		</div>
@@ -455,14 +463,14 @@ export function AppSidebar() {
 		>
 			{/* Header Section */}
 			{!isCollapsed ? (
-				<div className="flex items-center justify-between p-4 border-b border-gray-100 h-16">
+				<div className="flex items-center justify-between p-4 border-[#edeef2] border-[0px_0px_1px] border-solid h-16">
 					<div className="flex items-center gap-2">
 						<Image src={ValidataLogoComplete} alt="Validata Logo" />
 					</div>
 					<SidebarTrigger className="cursor-pointer" />
 				</div>
 			) : (
-				<div className="flex items-center justify-center p-4 border-b border-gray-100 h-16 w-full relative">
+				<div className="flex items-center justify-center p-4 border-[#edeef2] border-[0px_0px_1px] border-solid h-16 w-full relative">
 					<SidebarTrigger
 						className="cursor-pointer"
 						iconSrc={ValidataOnlyIcon}

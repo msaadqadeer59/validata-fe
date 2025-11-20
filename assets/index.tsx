@@ -33,9 +33,14 @@ import RefreshIcon from './refresh-icon.svg'
 import ResponseIcon from './response-icon.svg'
 import ChartIcon from './chart-icon.svg'
 import FrameIcon from './frame-icon.svg'
+import SurveyIcon from './survey-icon.svg'
+import FilterIcon from './filter-icon.svg'
+import SortIcon from './sort-icon.svg'
 
 export {
 	CreateSurveyOptionIcon,
+	FilterIcon,
+	SortIcon,
 	LogicIcon,
 	RequiredIcon,
 	MultiChoiceTypeIcon,
@@ -70,4 +75,5 @@ export {
 	ResponseIcon,
 	ChartIcon,
 	FrameIcon,
+	SurveyIcon,
 };

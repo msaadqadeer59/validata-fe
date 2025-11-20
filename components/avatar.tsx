@@ -2,6 +2,8 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
+type AvatarColor = "blue" | "orange" | "gray" | "green" | "red"
+
 const avatarVariants = cva(
   "relative overflow-clip",
   {
@@ -17,6 +19,13 @@ const avatarVariants = cva(
       radius: {
         rectangle: "",
         circle: "rounded-[99px]",
+      },
+      color: {
+        blue: "",
+        orange: "",
+        gray: "",
+        green: "",
+        red: "",
       },
     },
     compoundVariants: [
@@ -58,18 +67,38 @@ const avatarVariants = cva(
   }
 )
 
+// Avatar background colors from Figma Design System - exact hex colors
+const avatarBackgroundMap: Record<AvatarColor, string> = {
+  blue: "#5006D9",    // Purple from Figma
+  orange: "bg-orange-500",  // #FF6900
+  gray: "bg-gray-400",     // #B8B9C5
+  green: "#57AA44",   // Green from Figma
+  red: "bg-red-500",       // #FF283D
+}
+
+// Avatar text colors - white text on colored backgrounds for better contrast
+const avatarTextColorMap: Record<AvatarColor, string> = {
+  blue: "text-white",    // White text on purple background
+  orange: "text-white", // White text on orange background
+  gray: "text-white",    // White text on gray background
+  green: "text-white",  // White text on green background
+  red: "text-white",      // White text on red background
+}
+
 interface AvatarProps
   extends React.ComponentProps<"div">,
-    VariantProps<typeof avatarVariants> {
+  VariantProps<typeof avatarVariants> {
   src?: string
   alt?: string
   name?: string
+  color?: AvatarColor
 }
 
 function Avatar({
   className,
   size,
   radius,
+  color,
   src,
   alt,
   name,
@@ -78,12 +107,24 @@ function Avatar({
   const displayName = name || alt || "Avatar"
   const imageAlt = alt || name || "Avatar"
 
+  // Determine if we should show image or colored background with letters
+  const hasImage = src && src.trim()
+  const effectiveColor = color || "gray"
+
+  // Get background and text colors for letter variant
+  const bgColor = avatarBackgroundMap[effectiveColor]
+  const textColorClass = avatarTextColorMap[effectiveColor]
+
+  // Check if bgColor is a hex color (starts with #) or a Tailwind class
+  const bgColorStyle = bgColor?.startsWith("#") ? { backgroundColor: bgColor } : undefined
+  const bgColorClass = bgColor?.startsWith("#") ? undefined : bgColor
+
   return (
     <div
-      className={cn(avatarVariants({ size, radius }), className)}
+      className={cn(avatarVariants({ size, radius, color }), className)}
       {...props}
     >
-      {src ? (
+      {hasImage ? (
         <img
           src={src}
           alt={imageAlt}
@@ -101,7 +142,9 @@ function Avatar({
       ) : (
         <div
           className={cn(
-            "flex items-center justify-center size-full bg-gray-200 text-gray-600 font-medium",
+            "flex items-center justify-center size-full font-medium",
+            bgColorClass,
+            textColorClass,
             size === "12" && "text-[8px]",
             size === "16" && "text-[10px]",
             size === "24" && "text-xs",
@@ -109,13 +152,14 @@ function Avatar({
             size === "40" && "text-base",
             size === "72" && "text-2xl"
           )}
+          style={bgColorStyle}
         >
           {displayName
             .split(" ")
             .map((n) => n[0])
             .join("")
             .toUpperCase()
-            .slice(0, 2)}
+            .slice(0, 1)}
         </div>
       )}
     </div>
@@ -123,5 +167,5 @@ function Avatar({
 }
 
 export { Avatar, avatarVariants }
-export type { AvatarProps }
+export type { AvatarProps, AvatarColor }
 

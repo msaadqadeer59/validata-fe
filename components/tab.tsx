@@ -6,12 +6,12 @@ import { ChartIcon } from "@/assets"
 import Image from "next/image"
 
 const tabVariants = cva(
-  "box-border content-stretch flex items-center justify-center relative",
+  "box-border border-red-400 content-stretch flex items-center justify-center relative cursor-pointer",
   {
     variants: {
       type: {
         buttons: "",
-        "underline-border": "px-0 py-4 border-b",
+        "underline-border": "px-0 py-4",
         default: "",
       },
       size: {
@@ -207,28 +207,28 @@ const tabVariants = cva(
         size: "sm",
         active: true,
         state: "default",
-        class: "border-blue-600",
+        class: "border-b border-blue-600 border-solid",
       },
       {
         type: "underline-border",
         size: "sm",
         active: true,
         state: "hover",
-        class: "border-blue-600",
+        class: "border-b border-blue-600 border-solid",
       },
       {
         type: "underline-border",
         size: "sm",
         active: true,
         state: "focus",
-        class: "border-blue-600",
+        class: "border-b border-blue-600 border-solid",
       },
       {
         type: "underline-border",
         size: "sm",
         active: true,
         state: "disabled",
-        class: "border-blue-600",
+        class: "border-b border-blue-600 border-solid",
       },
       {
         type: "underline-border",
@@ -264,28 +264,28 @@ const tabVariants = cva(
         size: "md",
         active: true,
         state: "default",
-        class: "border-gray-950",
+        class: "border-b border-[#060510] border-solid",
       },
       {
         type: "underline-border",
         size: "md",
         active: true,
         state: "hover",
-        class: "border-gray-950",
+        class: "border-b border-[#060510] border-solid",
       },
       {
         type: "underline-border",
         size: "md",
         active: true,
         state: "focus",
-        class: "border-gray-950",
+        class: "border-b border-[#060510] border-solid",
       },
       {
         type: "underline-border",
         size: "md",
         active: true,
         state: "disabled",
-        class: "border-gray-950",
+        class: "border-b border-[#060510] border-solid",
       },
       {
         type: "underline-border",
@@ -394,7 +394,7 @@ const tabContentVariants = cva(
 
 interface TabProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof tabVariants> {
+  VariantProps<typeof tabVariants> {
   text?: string
   showCount?: boolean
   count?: number | string

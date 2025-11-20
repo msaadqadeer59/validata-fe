@@ -1,8 +1,10 @@
 'use client';
 
 import * as React from "react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { ArrowDownUp, Filter, ChevronDown } from "lucide-react"
+import { SortIcon, FilterIcon } from "@/assets"
+import { ChevronDown } from "lucide-react"
 
 interface SurveyFiltersProps extends React.HTMLAttributes<HTMLDivElement> {
   sortBy?: string
@@ -34,7 +36,7 @@ export function SurveyFilters({
           >
             <div className="box-border content-stretch flex gap-[8px] items-center justify-center overflow-clip px-[8px] py-[4px] relative rounded-[inherit]">
               <div className="overflow-clip relative shrink-0 size-[16px]">
-                <ArrowDownUp className="size-4 text-gray-500" strokeWidth={1.5} />
+                <Image src={SortIcon} alt="Sort" width={16} height={16} />
               </div>
               <p className="font-sans font-medium leading-[24px] not-italic relative shrink-0 text-gray-950 text-sm text-nowrap tracking-[-0.28px] whitespace-pre">
                 <span className="font-sans font-normal text-gray-600">Sorted by </span>
@@ -53,7 +55,7 @@ export function SurveyFilters({
           >
             <div className="box-border content-stretch flex gap-[8px] items-center justify-center overflow-clip px-[8px] py-[4px] relative rounded-[inherit]">
               <div className="overflow-clip relative shrink-0 size-[16px]">
-                <Filter className="size-4 text-gray-500" strokeWidth={1.5} />
+                <Image src={FilterIcon} alt="Filter" width={16} height={16} />
               </div>
               <p className="font-sans font-medium leading-[24px] not-italic relative shrink-0 text-gray-950 text-sm text-nowrap tracking-[-0.28px] whitespace-pre">
                 Filters
