@@ -209,6 +209,9 @@ export const Zero: Story = {
 
 // All states comparison
 export const AllStates: Story = {
+  args: {
+    text: 'Recent Analysis',
+  },
   render: () => (
     <div className="flex flex-col gap-2">
       <ExpandableNavCategory text="Recent Analysis" active={false} state="default" showNumber number="1" />
@@ -251,6 +254,9 @@ export const CollapsedWithItems: Story = {
 
 // Interactive expand/collapse
 export const Interactive: Story = {
+  args: {
+    text: 'Recent Analysis',
+  },
   render: () => {
     const [expanded, setExpanded] = React.useState(false);
     return (
@@ -272,6 +278,9 @@ export const Interactive: Story = {
 
 // Multiple categories
 export const MultipleCategories: Story = {
+  args: {
+    text: 'Recent Analysis',
+  },
   render: () => (
     <div className="flex flex-col gap-1 w-[200px]">
       <ExpandableNavCategory

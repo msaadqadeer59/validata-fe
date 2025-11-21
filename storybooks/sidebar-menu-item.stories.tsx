@@ -14,11 +14,6 @@ const meta = {
       control: 'boolean',
       description: 'Whether the menu item is active',
     },
-    state: {
-      control: 'select',
-      options: ['default', 'hover', 'focus', 'disabled'],
-      description: 'The interaction state of the menu item',
-    },
     collapsed: {
       control: 'boolean',
       description: 'Whether the sidebar is collapsed (icon-only mode)',
@@ -55,7 +50,6 @@ export const Default: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: false,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -66,7 +60,6 @@ export const DefaultWithCount: Story = {
     label: 'Label',
     count: '3',
     active: false,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -77,7 +70,6 @@ export const DefaultWithBadge: Story = {
     label: 'Label',
     badge: '24 new',
     active: false,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -89,7 +81,6 @@ export const DefaultWithCountAndBadge: Story = {
     count: '3',
     badge: '24 new',
     active: false,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -100,7 +91,6 @@ export const Active: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: true,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -111,7 +101,6 @@ export const ActiveWithCount: Story = {
     label: 'Label',
     count: '3',
     active: true,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -122,7 +111,6 @@ export const ActiveWithBadge: Story = {
     label: 'Label',
     badge: '24 new',
     active: true,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -134,7 +122,6 @@ export const ActiveWithCountAndBadge: Story = {
     count: '3',
     badge: '24 new',
     active: true,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -145,7 +132,6 @@ export const Hover: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: false,
-    state: 'hover',
     collapsed: false,
   },
 };
@@ -155,7 +141,6 @@ export const ActiveHover: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: true,
-    state: 'hover',
     collapsed: false,
   },
 };
@@ -167,7 +152,6 @@ export const HoverWithCountAndBadge: Story = {
     count: '3',
     badge: '24 new',
     active: false,
-    state: 'hover',
     collapsed: false,
   },
 };
@@ -178,7 +162,6 @@ export const Focus: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: false,
-    state: 'focus',
     collapsed: false,
   },
 };
@@ -188,7 +171,6 @@ export const ActiveFocus: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: true,
-    state: 'focus',
     collapsed: false,
   },
 };
@@ -200,7 +182,6 @@ export const FocusWithCountAndBadge: Story = {
     count: '3',
     badge: '24 new',
     active: false,
-    state: 'focus',
     collapsed: false,
   },
 };
@@ -211,7 +192,6 @@ export const Disabled: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: false,
-    state: 'disabled',
     collapsed: false,
     disabled: true,
   },
@@ -222,7 +202,6 @@ export const ActiveDisabled: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: true,
-    state: 'disabled',
     collapsed: false,
     disabled: true,
   },
@@ -235,7 +214,6 @@ export const DisabledWithCountAndBadge: Story = {
     count: '3',
     badge: '24 new',
     active: false,
-    state: 'disabled',
     collapsed: false,
     disabled: true,
   },
@@ -247,7 +225,6 @@ export const Collapsed: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: false,
-    state: 'default',
     collapsed: true,
     tooltipText: 'Prototype',
   },
@@ -258,7 +235,6 @@ export const CollapsedActive: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: true,
-    state: 'default',
     collapsed: true,
     tooltipText: 'Prototype',
   },
@@ -269,7 +245,6 @@ export const CollapsedHover: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: false,
-    state: 'hover',
     collapsed: true,
     tooltipText: 'Prototype',
   },
@@ -280,7 +255,6 @@ export const CollapsedActiveHover: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: true,
-    state: 'hover',
     collapsed: true,
     tooltipText: 'Prototype',
   },
@@ -291,7 +265,6 @@ export const CollapsedFocus: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: false,
-    state: 'focus',
     collapsed: true,
     tooltipText: 'Prototype',
   },
@@ -302,7 +275,6 @@ export const CollapsedDisabled: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: false,
-    state: 'disabled',
     collapsed: true,
     disabled: true,
   },
@@ -313,7 +285,6 @@ export const CollapsedActiveDisabled: Story = {
     icon: MessageSquare,
     label: 'Label',
     active: true,
-    state: 'disabled',
     collapsed: true,
     disabled: true,
   },
@@ -325,7 +296,6 @@ export const WithHomeIcon: Story = {
     icon: Home,
     label: 'Home',
     active: false,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -335,7 +305,6 @@ export const WithSettingsIcon: Story = {
     icon: Settings,
     label: 'Settings',
     active: true,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -346,7 +315,6 @@ export const WithUserIcon: Story = {
     label: 'Profile',
     count: '5',
     active: false,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -357,7 +325,6 @@ export const WithFileIcon: Story = {
     label: 'Documents',
     badge: '12 new',
     active: false,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -369,7 +336,6 @@ export const WithChartIcon: Story = {
     count: '99',
     badge: 'Updated',
     active: true,
-    state: 'default',
     collapsed: false,
   },
 };
@@ -380,7 +346,6 @@ export const LongLabel: Story = {
     icon: MessageSquare,
     label: 'This is a very long menu item label',
     active: false,
-    state: 'default',
     collapsed: false,
   },
 };

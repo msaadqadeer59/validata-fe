@@ -131,6 +131,9 @@ export const SpecialCharacterFirst: Story = {
 
 // All colors comparison
 export const AllColors: Story = {
+  args: {
+    title: 'Survey',
+  },
   render: () => (
     <div className="flex flex-col gap-2 w-[200px]">
       <SurveyItem title="Blue Survey" color="blue" />
@@ -144,6 +147,9 @@ export const AllColors: Story = {
 
 // Interactive
 export const Interactive: Story = {
+  args: {
+    title: 'Click me',
+  },
   render: () => {
     const [active, setActive] = React.useState(false);
     return (

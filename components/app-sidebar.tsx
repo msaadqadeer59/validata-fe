@@ -115,8 +115,6 @@ const surveyItems: NavCategoryItemData[] = [
 		id: '1',
 		label: 'Untitled survey',
 		color: 'green',
-		count: '100',
-		badge: '24 new',
 	},
 	{
 		id: '2',

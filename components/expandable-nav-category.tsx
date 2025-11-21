@@ -32,7 +32,7 @@ const expandableNavCategoryVariants = cva(
 )
 
 interface ExpandableNavCategoryProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "type">,
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "type" | "onToggle">,
   VariantProps<typeof expandableNavCategoryVariants> {
   text: string
   showNumber?: boolean
