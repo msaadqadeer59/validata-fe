@@ -272,7 +272,7 @@ function Avatar({
           className="bg-[rgba(18,18,23,0.7)] backdrop-blur-sm backdrop-filter text-white flex flex-col items-center justify-center pb-[7px] pt-[6px] px-[8px] rounded-[6px] text-nowrap whitespace-pre border-0 shadow-none [&_svg]:fill-[rgba(18,18,23,0.7)] [&_svg]:stroke-[rgba(18,18,23,0.7)] [&_svg]:!rotate-0 [&_svg]:!rounded-none"
         >
           <div className="flex flex-col items-center">
-            <p className="text-xs leading-none font-medium tracking-tight text-white">
+            <p className="text-xs leading-4 font-medium tracking-tight text-white">
               {tooltipNameText}
             </p>
             {tooltipRoleText && (
