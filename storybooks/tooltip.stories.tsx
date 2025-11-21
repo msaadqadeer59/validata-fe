@@ -9,16 +9,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    side: {
-      control: 'select',
-      options: ['top', 'right', 'bottom', 'left'],
-    },
-    arrowPlacement: {
-      control: 'select',
-      options: ['left', 'middle', 'right'],
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;

@@ -22,28 +22,28 @@ const checkboxVariants = cva(
     },
     compoundVariants: [
       {
-        checked: "false",
+        checked: false as boolean | "indeterminate",
         state: "hover",
         class: "border-gray-300",
       },
       {
-        checked: "false",
+        checked: false as boolean | "indeterminate",
         state: "focus",
         class: "border-gray-200",
       },
       {
-        checked: ["true", "indeterminate"],
+        checked: [true, "indeterminate"] as (boolean | "indeterminate")[],
         state: "focus",
         class: "shadow-[0px_0px_0px_2px_#ffffff,0px_0px_0px_4px_#060510]",
       },
       {
-        checked: ["false", "true", "indeterminate"],
+        checked: [false, true, "indeterminate"] as (boolean | "indeterminate")[],
         state: "disabled",
         class: "bg-gray-50 border-gray-200 opacity-50",
       },
     ],
     defaultVariants: {
-      checked: "false",
+      checked: false as boolean | "indeterminate",
       state: "default",
     },
   }
@@ -105,7 +105,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       ? "hover"
       : state
 
-    const checkedState = indeterminate ? "indeterminate" : isChecked ? "true" : "false"
+    const checkedState: boolean | "indeterminate" = indeterminate ? "indeterminate" : isChecked
+    const checkedStateString = indeterminate ? "indeterminate" : isChecked ? "true" : "false"
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (disabled) return
@@ -121,7 +122,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         <div
           className={cn(
             checkboxVariants({ checked: checkedState, state: effectiveState }),
-            focusVisibleStyles[checkedState],
+            focusVisibleStyles[checkedStateString],
             className
           )}
           onMouseEnter={() => !disabled && setIsHovered(true)}
@@ -138,7 +139,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             className="peer absolute inset-0 opacity-0 cursor-pointer disabled:cursor-not-allowed"
             {...props}
           />
-          {checkedState === "true" && (
+          {checkedState === true && (
             <Check className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[16px] text-white" strokeWidth={2} />
           )}
           {checkedState === "indeterminate" && (
@@ -158,7 +159,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <div
             className={cn(
               checkboxVariants({ checked: checkedState, state: effectiveState }),
-              focusVisibleStyles[checkedState]
+              focusVisibleStyles[checkedStateString]
             )}
           >
             <input
@@ -172,7 +173,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               className="absolute inset-0 opacity-0 cursor-pointer disabled:cursor-not-allowed peer"
               {...props}
             />
-            {checkedState === "true" && (
+            {checkedState === true && (
               <Check className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[16px] text-white" strokeWidth={2} />
             )}
             {checkedState === "indeterminate" && (

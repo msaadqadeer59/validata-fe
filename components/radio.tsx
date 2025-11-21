@@ -21,28 +21,28 @@ const radioVariants = cva(
     },
     compoundVariants: [
       {
-        checked: "false",
+        checked: false as boolean,
         state: "hover",
         class: "border-[var(--color-radio-unchecked-hover-border)]",
       },
       {
-        checked: "true",
+        checked: true as boolean,
         state: "hover",
         class: "bg-[var(--color-radio-checked-hover-bg)]",
       },
       {
-        checked: "true",
+        checked: true as boolean,
         state: "focus",
         class: "shadow-[0px_0px_0px_2px_#ffffff,0px_0px_0px_4px_#060510]",
       },
       {
-        checked: ["false", "true"],
+        checked: [false, true] as boolean[],
         state: "disabled",
         class: "bg-[var(--color-radio-disabled-bg)] border-[var(--color-radio-disabled-border)] shadow-none opacity-50",
       },
     ],
     defaultVariants: {
-      checked: "false",
+      checked: false as boolean,
       state: "default",
     },
   }
@@ -107,7 +107,8 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       ? "hover"
       : state
 
-    const checkedState = isChecked ? "true" : "false"
+    const checkedState: boolean = isChecked
+    const checkedStateString = isChecked ? "true" : "false"
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (disabled) return
@@ -121,7 +122,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     if (radioOnly) {
       return (
         <div
-          className={cn(radioVariants({ checked: checkedState, state: effectiveState }), focusVisibleStyles[checkedState], className)}
+          className={cn(radioVariants({ checked: checkedState, state: effectiveState }), focusVisibleStyles[checkedStateString], className)}
           onMouseEnter={() => !disabled && setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -138,7 +139,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             className="peer absolute inset-0 opacity-0 cursor-pointer disabled:cursor-not-allowed"
             {...props}
           />
-          {checkedState === "true" && (
+          {checkedState === true && (
             <div
               className={cn(
                 "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[var(--spacing-radio-dot-size)] rounded-full",
@@ -159,7 +160,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       >
         <div className={cn("flex gap-[var(--spacing-radio-gap)] items-start px-[var(--spacing-radio-padding-x)] py-[var(--spacing-radio-padding-y)] shrink-0")}>
           <div
-            className={cn(radioVariants({ checked: checkedState, state: effectiveState }), focusVisibleStyles[checkedState])}
+            className={cn(radioVariants({ checked: checkedState, state: effectiveState }), focusVisibleStyles[checkedStateString])}
           >
             <input
               ref={ref}
@@ -174,7 +175,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
               className="peer absolute inset-0 opacity-0 cursor-pointer disabled:cursor-not-allowed"
               {...props}
             />
-            {checkedState === "true" && (
+            {checkedState === true && (
               <div
                 className={cn(
                   "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[var(--spacing-radio-dot-size)] rounded-full",

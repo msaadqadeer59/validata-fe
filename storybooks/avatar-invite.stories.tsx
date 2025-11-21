@@ -9,10 +9,6 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    state: {
-      control: 'select',
-      options: ['default', 'hover'],
-    },
     src: {
       control: 'text',
     },
@@ -21,6 +17,10 @@ const meta = {
     },
     role: {
       control: 'text',
+    },
+    color: {
+      control: 'select',
+      options: ['blue', 'orange', 'gray', 'green', 'red'],
     },
   },
 } satisfies Meta<typeof AvatarInvite>;
@@ -35,47 +35,38 @@ const arrowImage = "http://localhost:3845/assets/df925c12d46698150536cb0bdae6c53
 
 export const MaherDefault: Story = {
   args: {
-    state: 'default',
     src: maherImage,
     name: 'Maher Jilani',
     role: 'View profile',
-    tooltipArrowSrc: arrowImage,
   },
 };
 
 export const MaherHover: Story = {
   args: {
-    state: 'hover',
     src: maherImage,
     name: 'Maher Jilani',
     role: 'View profile',
-    tooltipArrowSrc: arrowImage,
   },
 };
 
 export const KamilDefault: Story = {
   args: {
-    state: 'default',
     src: kamilImage,
     name: 'Kamil Mitek',
     role: 'View profile',
-    tooltipArrowSrc: arrowImage,
   },
 };
 
 export const KamilHover: Story = {
   args: {
-    state: 'hover',
     src: kamilImage,
     name: 'Kamil Mitek',
     role: 'View profile',
-    tooltipArrowSrc: arrowImage,
   },
 };
 
 export const WithoutArrow: Story = {
   args: {
-    state: 'hover',
     src: maherImage,
     name: 'Maher Jilani',
     role: 'View profile',
@@ -84,11 +75,9 @@ export const WithoutArrow: Story = {
 
 export const CustomRole: Story = {
   args: {
-    state: 'hover',
     src: maherImage,
     name: 'Maher Jilani',
     role: 'Product Designer',
-    tooltipArrowSrc: arrowImage,
   },
 };
 

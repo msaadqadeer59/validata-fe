@@ -35,13 +35,13 @@ const baseSwitchVariants = cva(
         class: "focus-visible:shadow-[0px_0px_0px_2px_#ffffff,0px_0px_0px_4px_#060510]",
       },
       {
-        active: ["false", "true"],
+        active: [false, true],
         state: "disabled",
         class: "bg-[var(--color-switch-disabled-bg)] border border-[var(--color-switch-disabled-border)] border-solid shadow-none",
       },
-    ],
+    ] as any,
     defaultVariants: {
-      active: false,
+      active: "false" as any,
       state: "default",
       size: "sm",
     },
@@ -51,7 +51,7 @@ const baseSwitchVariants = cva(
 
 interface BaseSwitchProps
   extends Omit<React.ComponentProps<"button">, "type">,
-    VariantProps<typeof baseSwitchVariants> {
+  VariantProps<typeof baseSwitchVariants> {
   checked?: boolean
   onCheckedChange?: (checked: boolean) => void
 }
@@ -80,10 +80,10 @@ const BaseSwitch = React.forwardRef<HTMLButtonElement, BaseSwitchProps>(
     const effectiveState = disabled
       ? "disabled"
       : isFocused
-      ? "focus"
-      : isHovered
-      ? "hover"
-      : state
+        ? "focus"
+        : isHovered
+          ? "hover"
+          : state
 
     const handleClick = () => {
       if (disabled) return
@@ -109,7 +109,7 @@ const BaseSwitch = React.forwardRef<HTMLButtonElement, BaseSwitchProps>(
             active: isChecked ? "true" : "false",
             state: effectiveState,
             size,
-          }),
+          } as any),
           "flex items-center gap-[var(--spacing-switch-gap)]",
           isChecked && "justify-end",
           className
@@ -141,7 +141,7 @@ const switchVariants = cva("flex gap-[var(--spacing-switch-gap)] items-start", {
 
 interface SwitchProps
   extends Omit<React.ComponentProps<"div">, "onChange">,
-    VariantProps<typeof switchVariants> {
+  VariantProps<typeof switchVariants> {
   checked?: boolean
   onCheckedChange?: (checked: boolean) => void
   label?: string
@@ -188,10 +188,10 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(
     const effectiveState = disabled
       ? "disabled"
       : isFocused
-      ? "focus"
-      : isHovered
-      ? "hover"
-      : state
+        ? "focus"
+        : isHovered
+          ? "hover"
+          : state
 
     const handleCheckedChange = (newChecked: boolean) => {
       setIsChecked(newChecked)
