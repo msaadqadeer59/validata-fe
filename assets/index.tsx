@@ -37,6 +37,7 @@ import SurveyIcon from './survey-icon.svg'
 import FilterIcon from './filter-icon.svg'
 import SortIcon from './sort-icon.svg'
 import ChevronSelectorIcon from './chevron-selector-icon.svg'
+import CloseSurveyIcon from './close-icon.svg'
 
 export {
 	ChevronSelectorIcon,
@@ -78,4 +79,5 @@ export {
 	ChartIcon,
 	FrameIcon,
 	SurveyIcon,
+	CloseSurveyIcon,
 };

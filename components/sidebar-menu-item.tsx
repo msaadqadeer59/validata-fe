@@ -133,7 +133,7 @@ const SidebarMenuItem = React.forwardRef<HTMLButtonElement, SidebarMenuItemProps
           <TooltipTrigger asChild>
             {button}
           </TooltipTrigger>
-          <TooltipContent side="right" arrowPlacement="middle">
+          <TooltipContent side="right">
             {tooltipText}
           </TooltipContent>
         </Tooltip>

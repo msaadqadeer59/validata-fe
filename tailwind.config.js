@@ -11,13 +11,13 @@ module.exports = {
             colors: {
                 // Gray Scale (from Figma Design System)
                 gray: {
-                    50: '#F7F7F8',   // Background
-                    100: '#EDEEF2',  // Hover
-                    200: '#DFE1E6',  // Border, Divider
-                    300: '#D7D9DE',  // Border, Divider 2
-                    400: '#B8B9C5',  // Icon background
-                    500: '#9999AD',  // Icon Outline
-                    600: '#6A6A7E',  // Support text
+                    50: '#F7F7F8', // Background
+                    100: '#EDEEF2', // Hover
+                    200: '#DFE1E6', // Border, Divider
+                    300: '#D7D9DE', // Border, Divider 2
+                    400: '#B8B9C5', // Icon background
+                    500: '#9999AD', // Icon Outline
+                    600: '#6A6A7E', // Support text
                     700: '#4C4C5C',
                     800: '#2F2E3A',
                     900: '#1B1925',
@@ -107,13 +107,13 @@ module.exports = {
                     950: '#032E15',
                 },
                 // Semantic colors mapped to gray scale
-                background: '#F7F7F8',      // gray-50
-                foreground: '#060510',      // gray-950
-                border: '#DFE1E6',          // gray-200
-                input: '#DFE1E6',           // gray-200
-                muted: '#B8B9C5',           // gray-400
+                background: '#F7F7F8', // gray-50
+                foreground: '#060510', // gray-950
+                border: '#DFE1E6', // gray-200
+                input: '#DFE1E6', // gray-200
+                muted: '#B8B9C5', // gray-400
                 'muted-foreground': '#6A6A7E', // gray-600
-                accent: '#EDEEF2',          // gray-100
+                accent: '#EDEEF2', // gray-100
                 'accent-foreground': '#060510', // gray-950
                 // Keep existing semantic colors (will be updated when we extract other colors)
                 primary: {
@@ -125,7 +125,7 @@ module.exports = {
                     foreground: 'oklch(0.205 0 0)',
                 },
                 destructive: {
-                    DEFAULT: '#F0001C',  // red-600
+                    DEFAULT: '#F0001C', // red-600
                     foreground: '#FFFFFF',
                 },
                 card: {
@@ -187,25 +187,25 @@ module.exports = {
             },
             fontSize: {
                 // Font sizes from Figma
-                '9xl': ['128px', { lineHeight: '128px' }],      // leading-none
-                '8xl': ['96px', { lineHeight: '96px' }],        // leading-none
-                '7xl': ['72px', { lineHeight: '72px' }],        // leading-none
-                '6xl': ['60px', { lineHeight: '60px' }],        // leading-none
-                '5xl': ['48px', { lineHeight: '48px' }],        // leading-none
-                '4xl': ['36px', { lineHeight: '40px' }],        // leading-10
-                '3xl': ['30px', { lineHeight: '32px' }],        // leading-8
-                '2xl': ['24px', { lineHeight: '36px' }],        // leading-9
-                'xl': ['20px', { lineHeight: '28px' }],         // leading-7
-                'lg': ['18px', { lineHeight: '24px' }],         // leading-6
-                'base': ['16px', { lineHeight: '24px' }],       // leading-6
-                'sm': ['14px', { lineHeight: '20px' }],         // leading-5
-                'xs': ['12px', { lineHeight: '16px' }],         // leading-4
+                '9xl': ['128px', { lineHeight: '128px' }], // leading-none
+                '8xl': ['96px', { lineHeight: '96px' }], // leading-none
+                '7xl': ['72px', { lineHeight: '72px' }], // leading-none
+                '6xl': ['60px', { lineHeight: '60px' }], // leading-none
+                '5xl': ['48px', { lineHeight: '48px' }], // leading-none
+                '4xl': ['36px', { lineHeight: '40px' }], // leading-10
+                '3xl': ['30px', { lineHeight: '32px' }], // leading-8
+                '2xl': ['24px', { lineHeight: '36px' }], // leading-9
+                xl: ['20px', { lineHeight: '28px' }], // leading-7
+                lg: ['18px', { lineHeight: '24px' }], // leading-6
+                base: ['16px', { lineHeight: '24px' }], // leading-6
+                sm: ['14px', { lineHeight: '20px' }], // leading-5
+                xs: ['12px', { lineHeight: '16px' }], // leading-4
             },
             fontWeight: {
-                normal: '400',   // Regular
-                medium: '500',   // Medium
+                normal: '400', // Regular
+                medium: '500', // Medium
                 semibold: '600', // Semi Bold
-                bold: '700',     // Bold
+                bold: '700', // Bold
             },
             lineHeight: {
                 none: '1',
@@ -215,22 +215,22 @@ module.exports = {
                 relaxed: '1.625',
                 loose: '2',
                 // Specific line heights from Figma
-                4: '16px',   // leading-4
-                5: '20px',   // leading-5
-                6: '24px',   // leading-6
-                7: '28px',   // leading-7
-                8: '32px',   // leading-8
-                9: '36px',   // leading-9
-                10: '40px',  // leading-10
-                12: '48px',  // leading-12
-                13: '52px',  // leading-13
-                14: '56px',  // leading-14
-                18: '72px',  // leading-18
-                20: '80px',  // leading-20
+                4: '16px', // leading-4
+                5: '20px', // leading-5
+                6: '24px', // leading-6
+                7: '28px', // leading-7
+                8: '32px', // leading-8
+                9: '36px', // leading-9
+                10: '40px', // leading-10
+                12: '48px', // leading-12
+                13: '52px', // leading-13
+                14: '56px', // leading-14
+                18: '72px', // leading-18
+                20: '80px', // leading-20
             },
             letterSpacing: {
                 tighter: '-0.05em',
-                tight: '-0.02em',  // -2% from Figma
+                tight: '-0.02em', // -2% from Figma
                 normal: '0em',
                 wide: '0.025em',
                 wider: '0.05em',
@@ -238,6 +238,382 @@ module.exports = {
             },
         },
     },
-    plugins: [],
-}
+    plugins: [
+        function ({ addUtilities }) {
+            // Base text-9xl class with all base properties
+            const baseProperties = {
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '128px',
+                lineHeight: '128px',
+                letterSpacing: '-2.56px',
+                fontStyle: 'normal',
+            };
 
+            // Base class (can be used with font-weight utilities)
+            const baseText9xl = {
+                '.text-9xl': baseProperties,
+            };
+
+            const baseText8xl = {
+                '.text-8xl': baseProperties,
+                fontSize: '96px',
+                lineHeight: '96px',
+                letterSpacing: '-1.92px',
+            };
+
+            const baseText7xl = {
+                '.text-7xl': baseProperties,
+                fontSize: '72px',
+                lineHeight: '72px',
+                letterSpacing: '-1.44px',
+            };
+
+            const baseText6xl = {
+                '.text-6xl': baseProperties,
+                fontSize: '60px',
+                lineHeight: '60px',
+                letterSpacing: '-1.2px',
+            };
+
+            const baseText5xl = {
+                '.text-5xl': baseProperties,
+                fontSize: '48px',
+                lineHeight: '48px',
+                letterSpacing: '-0.96px',
+            };
+
+            const baseText4xl = {
+                '.text-4xl': baseProperties,
+                fontSize: '36px',
+                lineHeight: '40px',
+                letterSpacing: '-0.72px',
+            };
+
+            const baseText3xl = {
+                '.text-3xl': baseProperties,
+                fontSize: '30px',
+                lineHeight: '32px',
+                letterSpacing: '-0.6px',
+            };
+
+            const baseText2xl = {
+                '.text-2xl': baseProperties,
+                fontSize: '24px',
+                lineHeight: '36px',
+                letterSpacing: '-0.48px',
+            };
+
+            const baseTextxl = {
+                '.text-xl': baseProperties,
+                fontSize: '20px',
+                lineHeight: '28px',
+                letterSpacing: '-0.4px',
+            };
+
+            const baseTextlg = {
+                '.text-lg': baseProperties,
+                fontSize: '18px',
+                lineHeight: '24px',
+                letterSpacing: '-0.36px',
+            };
+
+            const baseTextbase = {
+                '.text-base': baseProperties,
+                fontSize: '16px',
+                lineHeight: '24px',
+                letterSpacing: '-0.32px',
+            };
+
+            const baseTextsm = {
+                '.text-sm': baseProperties,
+                fontSize: '14px',
+                lineHeight: '20px',
+                letterSpacing: '-0.28px',
+            };
+
+            const baseTextxs = {
+                '.text-xs': baseProperties,
+                fontSize: '12px',
+                lineHeight: '16px',
+                letterSpacing: '-0.24px',
+            };
+
+            // Weight variants that extend the base and only override font-weight
+            const text9xlVariants = {
+                'text-9xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-9xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                '.text-9xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-9xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const text8xlVariants = {
+                'text-8xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-8xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-8xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-8xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const text7xlVariants = {
+                'text-7xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-7xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-7xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-7xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const text6xlVariants = {
+                'text-6xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-6xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-6xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-6xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const text5xlVariants = {
+                'text-5xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-5xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-5xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-5xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const text4xlVariants = {
+                'text-4xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+
+                'text-4xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-4xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-4xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+            const text3xlVariants = {
+                'text-3xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-3xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-3xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-3xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const text2xlVariants = {
+                'text-2xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-2xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-2xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-2xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const textxlVariants = {
+                'text-xl leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-xl leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-xl leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-xl leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const textlgVariants = {
+                'text-lg leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-lg leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-lg leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-lg leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const textbaseVariants = {
+                'text-base leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-base leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-base leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-base leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const textsmVariants = {
+                'text-sm leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-sm leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-sm leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-sm leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            const textxsVariants = {
+                'text-xs leading-none font-normal tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '400', // normal
+                },
+                'text-xs leading-none font-medium tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '500', // medium
+                },
+                'text-xs leading-none font-semibold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '600', // semibold
+                },
+                'text-xs leading-none font-bold tracking-tight': {
+                    ...baseProperties,
+                    fontWeight: '700', // bold
+                },
+            };
+
+            addUtilities({
+                ...baseText9xl,
+                ...text9xlVariants,
+                ...baseText8xl,
+                ...text8xlVariants,
+                ...baseText7xl,
+                ...text7xlVariants,
+                ...baseText6xl,
+                ...text6xlVariants,
+                ...baseText5xl,
+                ...text5xlVariants,
+                ...baseText4xl,
+                ...text4xlVariants,
+                ...baseText3xl,
+                ...text3xlVariants,
+                ...baseText2xl,
+                ...text2xlVariants,
+                ...baseTextxl,
+                ...textxlVariants,
+                ...baseTextlg,
+                ...textlgVariants,
+                ...baseTextbase,
+                ...textbaseVariants,
+                ...baseTextsm,
+                ...textsmVariants,
+                ...baseTextxs,
+                ...textxsVariants,
+            });
+        },
+    ],
+};

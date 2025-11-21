@@ -232,7 +232,7 @@ const StatItem = ({ icon, value, size, tooltipText }: { icon: React.ComponentPro
                 <TooltipTrigger asChild>
                     {content}
                 </TooltipTrigger>
-                <TooltipContent side="top" arrowPlacement="middle" sideOffset={8}>
+                <TooltipContent side="top" sideOffset={8}>
                     {tooltipText}
                 </TooltipContent>
             </Tooltip>
@@ -262,7 +262,7 @@ const MenuButton = ({ onClick }: { onClick?: () => void }) => (
                     </div>
                 </button>
             </TooltipTrigger>
-            <TooltipContent side="top" arrowPlacement="middle" sideOffset={8}>
+            <TooltipContent side="top" sideOffset={8}>
                 More options
             </TooltipContent>
         </Tooltip>

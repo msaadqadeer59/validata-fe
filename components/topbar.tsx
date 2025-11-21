@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { AvatarInvite } from "@/components/avatar-invite"
+import { Avatar } from "@/components/avatar"
 import { Tab } from "@/components/tab"
 
 interface TopbarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -103,13 +103,19 @@ export function Topbar({
             {/* Avatars */}
             <div className="bg-white box-border content-stretch flex h-[32px] items-center pl-[4px] pr-[8px] py-[2px] relative rounded-bl-[10px] rounded-tl-[10px] shrink-0 cursor-pointer">
               {avatars.map((avatar, index) => (
-                <AvatarInvite
+                <Avatar
                   key={index}
                   src={avatar.src}
                   name={avatar.name}
                   alt={avatar.alt}
+                  size="24"
+                  radius="circle"
+                  border={true}
+                  showTooltip={true}
+                  tooltipName={avatar.name}
+                  tooltipRole="View profile"
                   className={cn(
-                    "mr-[-4px] relative shrink-0 size-[24px]"
+                    "mr-[-4px] relative shrink-0"
                   )}
                 />
               ))}

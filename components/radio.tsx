@@ -211,7 +211,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
                             <Info className="size-[14px] text-gray-400" />
                           </div>
                         </TooltipTrigger>
-                        <TooltipContent side="bottom" arrowPlacement="middle" sideOffset={8}>
+                        <TooltipContent side="bottom" sideOffset={8}>
                           {tooltipText}
                         </TooltipContent>
                       </Tooltip>

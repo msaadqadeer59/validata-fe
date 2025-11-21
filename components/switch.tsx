@@ -262,7 +262,7 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(
                             <Info className="size-[14px] text-gray-400" />
                           </div>
                         </TooltipTrigger>
-                        <TooltipContent side="bottom" arrowPlacement="middle" sideOffset={8}>
+                        <TooltipContent side="bottom" sideOffset={8}>
                           {tooltipText}
                         </TooltipContent>
                       </Tooltip>

@@ -1,0 +1,135 @@
+# Typography System Rules
+
+## Typography Classes from Figma Design System
+
+**CRITICAL:** When implementing components from Figma using the MCP Figma server, you MUST:
+1. **ALWAYS** extract styling properties from the MCP Figma server output
+2. **STRICTLY FOLLOW** the exact style guidelines provided by the MCP Figma server
+3. **ALWAYS** use the typography classes defined in `tailwind.config.js` instead of hardcoding Tailwind classes
+4. **NEVER** use hardcoded font sizes, line heights, or letter spacing values
+5. **ALWAYS** map Figma typography patterns to the corresponding Tailwind classes from `tailwind.config.js`
+
+### Available Typography Classes
+
+All typography classes are defined in `tailwind.config.js` as Tailwind plugins. They follow this pattern:
+
+**Format:** `{size} leading-none {font-weight} tracking-tight`
+
+**Available Sizes:**
+- `text-9xl` (128px)
+- `text-8xl` (96px)
+- `text-7xl` (72px)
+- `text-6xl` (60px)
+- `text-5xl` (48px)
+- `text-4xl` (36px)
+- `text-3xl` (30px)
+- `text-2xl` (24px)
+- `text-xl` (20px)
+- `text-lg` (18px)
+- `text-base` (16px)
+- `text-sm` (14px)
+- `text-xs` (12px)
+
+**Available Font Weights:**
+- `font-normal` (400)
+- `font-medium` (500)
+- `font-semibold` (600)
+- `font-bold` (700)
+
+### Usage Guidelines
+
+1. **When creating components from Figma, match the typography pattern:**
+   - If Figma shows: `leading-none/font-normal` with `text-9xl`
+   - Use: `className="text-9xl leading-none font-normal tracking-tight"`
+
+2. **Example usage:**
+   ```tsx
+   {/* For text-9xl with normal weight */}
+   <p className="text-9xl leading-none font-normal tracking-tight">
+     Validate Everything
+   </p>
+   
+   {/* For text-sm with medium weight */}
+   <p className="text-sm leading-none font-medium tracking-tight">
+     Validate Everything
+   </p>
+   ```
+
+3. **All typography classes include:**
+   - Font family: `Inter, sans-serif`
+   - Letter spacing: `-2%` (tracking-tight)
+   - Line height: Matches font size for `leading-none` variants
+   - Font size and weight: As specified
+
+### Typography Configuration
+
+All typography classes are defined in:
+- `tailwind.config.js` - Tailwind plugin configuration (lines 241-618)
+- Each size has base properties and weight variants
+
+### When Creating Components from Figma (MCP Figma Server)
+
+**MANDATORY STEPS:**
+
+1. **ALWAYS extract styling from MCP Figma server:**
+   - Use `mcp_Figma_Desktop_get_design_context` to get the component
+   - Extract ALL styling properties (colors, spacing, typography, borders, etc.)
+   - Note the exact typography pattern (e.g., `text-xs/leading-5/font-normal`)
+
+2. **Check the Figma component for typography patterns:**
+   - Look for class names like `leading-none/font-normal`, `leading-5/font-medium`, etc.
+   - Note the text size (text-9xl, text-xs, etc.)
+   - Check the exact line height (leading-4, leading-5, leading-6, etc.)
+
+3. **Map Figma patterns to Tailwind classes from `tailwind.config.js`:**
+   - `text-xs/leading-5/font-normal` → `text-xs leading-5 font-normal tracking-tight`
+   - `text-xs/leading-none/font-normal` → `text-xs leading-none font-normal tracking-tight`
+   - `leading-none/font-medium` → `leading-none font-medium tracking-tight`
+   - Always combine with the size: `text-xs leading-5 font-medium tracking-tight`
+
+4. **Use the exact class combination matching Figma:**
+   ```tsx
+   // Example: If Figma shows text-xs/leading-5/font-normal
+   <p className="text-xs leading-5 font-normal tracking-tight">
+     Text content
+   </p>
+   ```
+
+5. **Follow ALL styling properties from Figma:**
+   - Colors: Use exact hex values or color tokens from `tailwind.config.js`
+   - Spacing: Use exact pixel values or spacing tokens
+   - Borders: Match border width, style, color, and radius exactly
+   - Layout: Match flexbox properties, gaps, padding, etc.
+   - Never deviate from the Figma design specifications
+
+### Important Notes
+
+- **NEVER** use hardcoded font sizes like `text-[128px]` or `text-[14px]`
+- **NEVER** use hardcoded line heights like `leading-[20px]` or `leading-[128px]`
+- **NEVER** use hardcoded letter spacing like `tracking-[-0.24px]` or `tracking-[-2.56px]`
+- **ALWAYS** use the typography classes from `tailwind.config.js` to ensure consistency
+- **ALWAYS** include `tracking-tight` for letter spacing (-2% from Figma)
+- **ALWAYS** extract and follow exact styling from MCP Figma server output
+- **ALWAYS** match the exact typography pattern from Figma (e.g., `text-xs/leading-5/font-normal`)
+- When in doubt, check the Figma Typography component for the exact class pattern
+- All typography classes automatically include the correct font family (Inter) and letter spacing
+- View `storybooks/typography.stories.tsx` to see all available typography classes and their rendered output
+
+### Common Mistakes to Avoid
+
+❌ **WRONG:**
+```tsx
+<p className="font-sans font-normal leading-5 text-[12px] tracking-[-0.24px]">
+  Text
+</p>
+```
+
+✅ **CORRECT:**
+```tsx
+<p className="text-xs leading-5 font-normal tracking-tight">
+  Text
+</p>
+```
+
+The correct version uses the typography system from `tailwind.config.js` which ensures consistency and matches the Figma design system.
+
