@@ -145,13 +145,13 @@ module.exports = {
                     5: 'oklch(0.769 0.188 70.08)',
                 },
                 sidebar: {
-                    DEFAULT: 'oklch(0.985 0 0)',
+                    DEFAULT: '#FFFFFF',
                     foreground: '#060510',
                     primary: 'oklch(0.205 0 0)',
-                    'primary-foreground': 'oklch(0.985 0 0)',
+                    'primary-foreground': '#FFFFFF',
                     accent: '#EDEEF2',
                     'accent-foreground': '#060510',
-                    border: '#DFE1E6',
+                    border: '#EDEEF2',
                     ring: 'oklch(0.708 0 0)',
                 },
                 // Button specific colors - using existing color scale references

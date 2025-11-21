@@ -4,7 +4,7 @@ import { Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const addQuestionManualVariants = cva(
-  "relative bg-white rounded-[20px] w-[200px] h-[283px] cursor-pointer transition-all",
+  "bg-white overflow-clip relative rounded-[20px] cursor-pointer transition-all",
   {
     variants: {
       state: {
@@ -19,11 +19,11 @@ const addQuestionManualVariants = cva(
 )
 
 const iconContainerVariants = cva(
-  "absolute bg-white border left-1/2 rounded-[99px] top-[calc(50%+0.5px)] -translate-x-1/2 -translate-y-1/2 transition-all",
+  "absolute bg-white border border-solid left-1/2 rounded-[99px] -translate-x-1/2 -translate-y-1/2 transition-all",
   {
     variants: {
       state: {
-        default: "border-gray-100 size-[32px]",
+        default: "border-gray-100 size-[32px] top-[calc(50%+0.5px)]",
         hover: "border-gray-200 size-[40px] top-1/2",
       },
     },
@@ -33,8 +33,23 @@ const iconContainerVariants = cva(
   }
 )
 
+const iconInnerVariants = cva(
+  "box-border content-stretch flex items-center justify-center overflow-clip p-[4px] relative rounded-[inherit] transition-all",
+  {
+    variants: {
+      state: {
+        default: "size-[32px]",
+        hover: "size-[40px]",
+      },
+    },
+    defaultVariants: {
+      state: "default",
+    },
+  }
+)
+
 const iconVariants = cva(
-  "transition-all",
+  "overflow-clip relative shrink-0 transition-all",
   {
     variants: {
       state: {
@@ -49,7 +64,7 @@ const iconVariants = cva(
 )
 
 const textVariants = cva(
-  "absolute bottom-[60px] left-[calc(50%-0.5px)] -translate-x-1/2 translate-y-full text-center font-sans font-medium leading-[20px] not-italic text-[14px] tracking-[-0.28px] whitespace-pre transition-colors",
+  "absolute bottom-[60px] font-sans font-medium leading-[20px] left-[calc(50%-0.5px)] not-italic text-[14px] text-center text-nowrap tracking-[-0.28px] -translate-x-1/2 translate-y-full whitespace-pre transition-colors",
   {
     variants: {
       state: {
@@ -75,44 +90,42 @@ function AddQuestionManual({
   onClick,
   ...props
 }: AddQuestionManualProps) {
-  const effectiveState = state || "default"
-  const isHover = effectiveState === "hover"
+  const [internalState, setInternalState] = React.useState<"default" | "hover">("default")
+  const effectiveState = state !== "default" ? state : internalState
+
+  const handleMouseEnter = () => {
+    if (state === "default") {
+      setInternalState("hover")
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (state === "default") {
+      setInternalState("default")
+    }
+  }
 
   return (
     <div
-      className={cn(
-        addQuestionManualVariants({ state: effectiveState, className }),
-        "group"
-      )}
+      className={cn(addQuestionManualVariants({ state: effectiveState }), className)}
       onClick={onClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       {...props}
     >
       {/* Circular Icon Button */}
-      <div className={cn(
-        iconContainerVariants({ state: effectiveState }),
-        "group-hover:border-gray-200 group-hover:size-[40px] group-hover:top-1/2"
-      )}>
-        <div className={cn(
-          "flex items-center justify-center p-[4px] relative rounded-[inherit]",
-          isHover ? "size-[40px]" : "size-[32px]",
-          "group-hover:size-[40px]"
-        )}>
-          <div className="relative shrink-0 overflow-clip">
-            <Plus className={cn(
-              iconVariants({ state: effectiveState }),
-              "group-hover:size-[20px] group-hover:text-gray-950"
-            )} strokeWidth={2} />
+      <div className={iconContainerVariants({ state: effectiveState })}>
+        <div className={iconInnerVariants({ state: effectiveState })}>
+          <div className={iconVariants({ state: effectiveState })}>
+            <Plus className="size-full" strokeWidth={2} />
           </div>
         </div>
       </div>
 
       {/* Text Below */}
-      <div className={cn(
-        textVariants({ state: effectiveState }),
-        "group-hover:text-gray-950"
-      )}>
-        <p className="mb-0">Add question{" "}</p>
-        <p className="mt-0">manually</p>
+      <div className={textVariants({ state: effectiveState })}>
+        <p className="mb-0">Add question </p>
+        <p>manually</p>
       </div>
     </div>
   )
@@ -120,4 +133,3 @@ function AddQuestionManual({
 
 export { AddQuestionManual, addQuestionManualVariants }
 export type { AddQuestionManualProps }
-

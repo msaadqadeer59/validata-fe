@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
-import { Topbar } from '@/components/topbar';
 import { SurveyProvider } from '@/contexts/survey-context';
+import { LayoutContent } from './layout-content';
 
 const inter = Inter({
 	variable: '--font-inter',
@@ -21,12 +21,11 @@ function Layout({ children }: { children: React.ReactNode }) {
 		<SurveyProvider>
 			<SidebarProvider defaultOpen={true}>
 				<AppSidebar />
-				<main className='flex flex-col w-full'>
-					<div className='flex items-center gap-2 border-b bg-white px-6 py-4 h-[65px]'>
-						<Topbar />
+				<LayoutContent>
+					<div className='p-[16px]'>
+						{children}
 					</div>
-					<div className='flex-1 overflow-auto'>{children}</div>
-				</main>
+				</LayoutContent>
 			</SidebarProvider>
 		</SurveyProvider>
 	);

@@ -21,9 +21,28 @@ import ImproveWithAIIcon from './use-ai-icon.svg';
 import InfoIcon from './info-icon.svg';
 import OptionDeleteIcon from './option-delete-icon.svg';
 import CreateSurveyOptionIcon from './create-survey-option.svg';
+import SearchIcon from './search-icon.svg';
+import ValidataLogoComplete from './validata-logo-complete.svg';
+import ValidataOnlyIcon from './validata-only-icon.svg'
+import ExpandCollapseIcon from './expand-collapse-icon.svg'
+import UpgradeValidataImage from './upgrade-validata-image.svg'
+import NotificationIcon from './notification-icon.svg'
+import SupportIcon from './support-icon.svg'
+import UpgradeButtonIcon from './upgrade-button-icon.svg'
+import RefreshIcon from './refresh-icon.svg'
+import ResponseIcon from './response-icon.svg'
+import ChartIcon from './chart-icon.svg'
+import FrameIcon from './frame-icon.svg'
+import SurveyIcon from './survey-icon.svg'
+import FilterIcon from './filter-icon.svg'
+import SortIcon from './sort-icon.svg'
+import ChevronSelectorIcon from './chevron-selector-icon.svg'
 
 export {
+	ChevronSelectorIcon,
 	CreateSurveyOptionIcon,
+	FilterIcon,
+	SortIcon,
 	LogicIcon,
 	RequiredIcon,
 	MultiChoiceTypeIcon,
@@ -46,4 +65,17 @@ export {
 	ImproveWithAIIcon,
 	InfoIcon,
 	OptionDeleteIcon,
+	SearchIcon,
+	ValidataLogoComplete,
+	ValidataOnlyIcon,
+	ExpandCollapseIcon,
+	UpgradeValidataImage,
+	NotificationIcon,
+	SupportIcon,
+	UpgradeButtonIcon,
+	RefreshIcon,
+	ResponseIcon,
+	ChartIcon,
+	FrameIcon,
+	SurveyIcon,
 };

@@ -98,9 +98,9 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
       } else if (onChange) {
         const syntheticEvent = {
           ...e,
-          target: { ...e.target, value: "" } as HTMLInputElement,
-          currentTarget: { ...e.currentTarget, value: "" } as HTMLInputElement,
-        } as unknown as React.ChangeEvent<HTMLInputElement>
+          target: { ...e.target, value: "" },
+          currentTarget: { ...e.currentTarget, value: "" },
+        } as React.ChangeEvent<HTMLInputElement>
         onChange(syntheticEvent)
       }
     }

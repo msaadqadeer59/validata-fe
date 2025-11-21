@@ -1,38 +1,32 @@
 'use client';
 
-import {
-	Check,
-	Layers,
-	MessageSquare,
-	BarChart3,
-	Cloud,
-	ChevronRight,
-	ChevronDown,
-	LayoutGrid,
-	ClipboardList,
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import * as React from 'react';
+import { Layers, MessageSquare, BarChart3, Cloud, ChevronDown, Plus } from 'lucide-react';
+import { Button } from '@/components/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-<<<<<<< Updated upstream
-=======
-import { usePathname, useRouter } from 'next/navigation';
-import Link from 'next/link';
->>>>>>> Stashed changes
+import { usePathname } from 'next/navigation';
 
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarGroup,
 	SidebarGroupContent,
-	SidebarGroupLabel,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarTrigger,
 	useSidebar,
 } from '@/components/ui/sidebar';
-import { CreateSurveyOptionIcon, ValidataLogo } from '@/assets';
+import { CreateSurveyOptionIcon, ValidataLogoComplete, ValidataOnlyIcon, UpgradeValidataImage, NotificationIcon, SupportIcon, SettingsIcon, UpgradeButtonIcon, SearchIcon, ChevronSelectorIcon } from '@/assets';
 import Image from 'next/image';
+import { SearchBar } from '@/components/search-bar';
+import { ExpandableNavCategory } from './expandable-nav-category';
+import type { NavCategoryItemData } from './nav-category-content';
+import { SidebarMenuItem as SidebarMenuItemComponent } from './sidebar-menu-item';
+import { Avatar } from './avatar';
+import { cn } from '@/lib/utils';
+import { ReportColor } from './report-color';
+import { SurveyBadge } from './survey-badge';
 
 // Menu items.
 const items = [
@@ -58,7 +52,7 @@ const items = [
 
 function CollapsedAppBar() {
 	return (
-		<SidebarGroup>
+		<SidebarGroup className="p-4">
 			<SidebarGroupContent>
 				<SidebarMenu>
 					{items.map((item) => (
@@ -70,12 +64,12 @@ function CollapsedAppBar() {
 										isActive={item.isActive}
 										className={item.isActive ? 'bg-gray-100 rounded-full p-2' : 'rounded-full p-2'}
 									>
-										<a href={item.url} className='flex items-center justify-center'>
-											<item.icon className='w-5 h-5 text-gray-700' />
+										<a href={item.url} className="flex items-center justify-center">
+											<item.icon className="w-5 h-5 text-gray-700" />
 										</a>
 									</SidebarMenuButton>
 								</TooltipTrigger>
-								<TooltipContent side='right'>
+								<TooltipContent side="right">
 									<p>{item.title}</p>
 								</TooltipContent>
 							</Tooltip>
@@ -87,8 +81,6 @@ function CollapsedAppBar() {
 	);
 }
 
-<<<<<<< Updated upstream
-=======
 // Shared Recent Analysis items - used across all routes
 const recentAnalysisItems: NavCategoryItemData[] = [
 	{
@@ -123,6 +115,8 @@ const surveyItems: NavCategoryItemData[] = [
 		id: '1',
 		label: 'Untitled survey',
 		color: 'green',
+		count: '100',
+		badge: '24 new',
 	},
 	{
 		id: '2',
@@ -145,11 +139,9 @@ const surveyItems: NavCategoryItemData[] = [
 function DashboardSideBarItems() {
 	return (
 		<div className="flex flex-col gap-2">
-			<Link href="/survey">
-				<Button variant="default" size="default" icon={<Plus />} iconPosition="left" className="w-full">
-					Create new survey
-				</Button>
-			</Link>
+			<Button variant="default" size="default" icon={<Plus />} iconPosition="left" className="w-full">
+				Create new survey
+			</Button>
 			<SearchBar className="w-full" />
 			<div className="flex flex-col gap-1">
 				<ExpandableNavCategory text="Surveys" items={surveyItems} itemType="survey" defaultExpanded={true} showNumber={false} />
@@ -167,14 +159,12 @@ function DashboardSideBarItemsCollapsed() {
 				{/* Create new survey button - collapsed */}
 				<Tooltip>
 					<TooltipTrigger asChild>
-						<Link href="/survey">
-							<Button
-								variant="default"
-								size="icon-sm"
-								icon={<Plus className="w-4 h-4 text-white" />}
-								className="w-8 h-8 rounded-[10px]"
-							/>
-						</Link>
+						<Button
+							variant="default"
+							size="icon-sm"
+							icon={<Plus className="w-4 h-4 text-white" />}
+							className="w-8 h-8 rounded-[10px]"
+						/>
 					</TooltipTrigger>
 					<TooltipContent side="right">
 						<p>Create new survey</p>
@@ -449,83 +439,86 @@ function SidebarBottomSectionCollapsed() {
 	);
 }
 
->>>>>>> Stashed changes
 export function AppSidebar() {
 	const { state } = useSidebar();
+	const pathname = usePathname();
 	const isCollapsed = state === 'collapsed';
 
+	// Determine which route we're on
+	const isDashboardRoute = pathname === '/dashboard';
+	const isSurveyRoute = pathname === '/survey';
+
 	return (
-		<Sidebar collapsible='icon'>
+		<Sidebar
+			collapsible="icon"
+			className={cn(
+				"w-[276px]",
+				isCollapsed && "w-16"
+			)}
+			style={
+				isCollapsed
+					? ({ '--sidebar-width-icon': '4rem' } as React.CSSProperties)
+					: undefined
+			}
+		>
 			{/* Header Section */}
 			{!isCollapsed ? (
-				<div className='flex items-center justify-between p-4 border-b h-[65px] '>
-					<div className='flex items-center gap-2'>
-						<Image alt='validata-logo' src={ValidataLogo} />
-						<span className='font-bold text-lg text-black'>Validata</span>
+				<div className="flex items-center justify-between p-4 border-[#edeef2] border-[0px_0px_1px] border-solid h-16">
+					<div className="flex items-center gap-2">
+						<Image src={ValidataLogoComplete} alt="Validata Logo" />
 					</div>
-					<SidebarTrigger className='cursor-pointer' />
+					<SidebarTrigger className="cursor-pointer" />
 				</div>
 			) : (
-				<div className='flex items-center justify-center p-4 border-b h-[65px] '>
-					<SidebarTrigger className='cursor-pointer' />
+				<div className="flex items-center justify-center p-4 border-[#edeef2] border-[0px_0px_1px] border-solid h-16 w-full relative">
+					<SidebarTrigger
+						className="cursor-pointer"
+						iconSrc={ValidataOnlyIcon}
+						iconAlt="Validata Logo"
+						iconWidth={22}
+						iconHeight={24}
+					/>
 				</div>
 			)}
 
-			<SidebarContent>
-				{/* Document Title Section - Hidden in collapsed state */}
-				{!isCollapsed && (
-					<SidebarGroup>
-						<div className='flex items-center justify-between px-4 py-3'>
-							<div className='flex items-center gap-2'>
-								<h2 className='font-bold text-xl text-gray-900'>Untitled</h2>
-								<span className='px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded-md font-medium'>Draft</span>
+			<SidebarContent className="flex flex-col">
+				{/* Document Title Section - Only shown on Survey route */}
+				{!isCollapsed && isSurveyRoute && (
+					<SidebarGroup className="p-4">
+						<div className="flex items-center justify-between">
+							<div className="flex items-center gap-2">
+								<h2 className="font-bold text-xl text-gray-900">Untitled</h2>
+								<span className="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded-md font-medium">Draft</span>
 							</div>
-							<Cloud className='w-4 h-4 text-gray-400' />
+							<Cloud className="w-4 h-4 text-gray-400" />
 						</div>
 
-						<SidebarGroupContent>
-							<SidebarMenu>
-								{items.map((item) => (
-									<SidebarMenuItem key={item.title} className='px-2'>
-										<SidebarMenuButton asChild isActive={item.isActive} className={item.isActive ? 'bg-[#F7F7F8]' : ''}>
-											<a href={item.url} className='flex items-center gap-3 w-full'>
-												<item.icon className='w-5 h-5 text-gray-700' />
-												<span className='text-gray-900 font-medium'>{item.title}</span>
-												{item.isActive && (
-													<div className='ml-auto'>
-														<Button
-															size='sm'
-															className='cursor-pointer bg-[#DAE7FF] hover:bg-[#DAE7FF]  text-[#1447E6] h-7 px-3 rounded-md text-xs font-medium flex items-center gap-1.5'
-														>
-															<Image src={CreateSurveyOptionIcon} alt='Create Survey' width={14} height={14} />
-															<span>Survey</span>
-															<ChevronDown className='w-3 h-3' />
-														</Button>
-													</div>
-												)}
-											</a>
-										</SidebarMenuButton>
-									</SidebarMenuItem>
-								))}
-							</SidebarMenu>
-						</SidebarGroupContent>
+						<SurveySideBarItems />
 					</SidebarGroup>
 				)}
 
-				{/* Collapsed State - Icons Only */}
-				{isCollapsed && <CollapsedAppBar />}
-
-				{/* Recent Analysis Section - Hidden in collapsed state */}
+				{/* Route-specific content */}
 				{!isCollapsed && (
-					<SidebarGroup>
-						<SidebarGroupLabel>
-							<div className='flex items-center gap-2 text-gray-500'>
-								<ChevronRight className='w-4 h-4' />
-								<span>Recent Analysis</span>
-							</div>
-						</SidebarGroupLabel>
-					</SidebarGroup>
+					<div className="flex flex-col gap-4 p-4">
+						{isDashboardRoute && <DashboardSideBarItems />}
+						<RecentAnalysisSection />
+					</div>
 				)}
+
+				{/* Bottom Section - Menu List, Upgrade Card, User Profile */}
+				{!isCollapsed && <SidebarBottomSection />}
+
+				{/* Collapsed State - Dashboard Route */}
+				{isCollapsed && isDashboardRoute && (
+					<>
+						<DashboardSideBarItemsCollapsed />
+						<RecentAnalysisSectionCollapsed />
+						<SidebarBottomSectionCollapsed />
+					</>
+				)}
+
+				{/* Collapsed State - Other Routes (Icons Only) */}
+				{isCollapsed && !isDashboardRoute && <CollapsedAppBar />}
 			</SidebarContent>
 		</Sidebar>
 	);

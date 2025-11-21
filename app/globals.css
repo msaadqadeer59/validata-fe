@@ -172,6 +172,14 @@
 		background-color: var(--color-background);
 		color: var(--color-foreground);
 	}
+	/* Hide Next.js dev indicator */
+	#__next-build-watcher,
+	[data-nextjs-toast],
+	[data-nextjs-dialog],
+	[data-nextjs-dev-indicator],
+	.nextjs-dev-indicator {
+		display: none !important;
+	}
 }
 
 @keyframes fadeInSlideUp {
@@ -183,4 +191,8 @@
 		opacity: 1;
 		transform: translateY(0) scale(1);
 	}
+}
+
+body {
+	background-color: white;
 }

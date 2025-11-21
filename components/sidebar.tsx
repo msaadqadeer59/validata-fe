@@ -2,7 +2,6 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-import Link from "next/link"
 import {
   ValidataLogo,
   ValidataOnlyIcon,
@@ -176,44 +175,40 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
             {collapsed ? (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link href="/survey">
-                    <button
-                      className="bg-gray-950 box-border content-stretch flex gap-2 items-center justify-center overflow-clip px-2 py-1 relative rounded-button shrink-0 size-8 cursor-pointer hover:bg-gray-900 transition-colors"
-                      aria-label="Create new survey"
-                    >
-                      <div className="overflow-clip relative shrink-0 size-4">
-                        <Image
-                          src={PlusSquareIcon}
-                          alt="Create"
-                          width={16}
-                          height={16}
-                          className="size-4 brightness-0 invert"
-                        />
-                      </div>
-                    </button>
-                  </Link>
+                  <button
+                    className="bg-gray-950 box-border content-stretch flex gap-2 items-center justify-center overflow-clip px-2 py-1 relative rounded-button shrink-0 size-8 cursor-pointer hover:bg-gray-900 transition-colors"
+                    aria-label="Create new survey"
+                  >
+                    <div className="overflow-clip relative shrink-0 size-4">
+                      <Image
+                        src={PlusSquareIcon}
+                        alt="Create"
+                        width={16}
+                        height={16}
+                        className="size-4 brightness-0 invert"
+                      />
+                    </div>
+                  </button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Create new survey</TooltipContent>
               </Tooltip>
             ) : (
-              <Link href="/survey">
-                <button
-                  className="bg-gray-950 box-border content-stretch flex gap-2 items-center justify-center overflow-clip px-2 py-1 relative rounded-button shrink-0 w-full cursor-pointer hover:bg-gray-900 transition-colors"
-                >
-                  <div className="overflow-clip relative shrink-0 size-4">
-                    <Image
-                      src={PlusSquareIcon}
-                      alt="Create"
-                      width={16}
-                      height={16}
-                      className="size-4 brightness-0 invert"
-                    />
-                  </div>
-                  <p className="font-sans font-medium leading-6 not-italic relative shrink-0 text-sm text-white tracking-tight whitespace-nowrap">
-                    Create new survey
-                  </p>
-                </button>
-              </Link>
+              <button
+                className="bg-gray-950 box-border content-stretch flex gap-2 items-center justify-center overflow-clip px-2 py-1 relative rounded-button shrink-0 w-full cursor-pointer hover:bg-gray-900 transition-colors"
+              >
+                <div className="overflow-clip relative shrink-0 size-4">
+                  <Image
+                    src={PlusSquareIcon}
+                    alt="Create"
+                    width={16}
+                    height={16}
+                    className="size-4 brightness-0 invert"
+                  />
+                </div>
+                <p className="font-sans font-medium leading-6 not-italic relative shrink-0 text-sm text-white tracking-tight whitespace-nowrap">
+                  Create new survey
+                </p>
+              </button>
             )}
 
             {/* Search Bar */}
