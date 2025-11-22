@@ -38,8 +38,14 @@ import FilterIcon from './filter-icon.svg'
 import SortIcon from './sort-icon.svg'
 import ChevronSelectorIcon from './chevron-selector-icon.svg'
 import CloseSurveyIcon from './close-icon.svg'
+import AccountSettingIcon from './account-setting-icon.svg'
+import ExportAcceptIcon from './export-accept-icon.svg'
+import InviteMembersIcon from './invite-members-icon.svg'
+import LogoutIcon from './logout-icon.svg'
+import EmptyNotificationIcon from './empty-notifications.svg'
 
 export {
+	EmptyNotificationIcon,
 	ChevronSelectorIcon,
 	CreateSurveyOptionIcon,
 	FilterIcon,
@@ -80,4 +86,8 @@ export {
 	FrameIcon,
 	SurveyIcon,
 	CloseSurveyIcon,
+	AccountSettingIcon,
+	ExportAcceptIcon,
+	InviteMembersIcon,
+	LogoutIcon,
 };

@@ -33,7 +33,7 @@ export function LayoutContent({ children }: { children: React.ReactNode }) {
 					<Topbar
 						activeTab={activeTab}
 						onTabChange={handleTabChange}
-						surveysCount={3}
+						surveysCount={pathname === '/dashboard' ? 50 : 3}
 						onShareFeedbackClick={handleShareFeedback}
 						onInviteClick={handleInvite}
 						avatars={[

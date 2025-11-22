@@ -2,6 +2,7 @@
 
 import { ListSurveys } from '@/components/list-surveys';
 import { SurveyFilters } from '@/components/survey-filters';
+import { stressedSurveyData } from '@/mocks/survey-mock-data';
 
 export default function DashboardPage() {
 	const handleSurveyClick = (surveyId: string) => {
@@ -27,7 +28,11 @@ export default function DashboardPage() {
 	return (
 		<div className="box-border content-stretch flex flex-col items-start relative w-full">
 			<SurveyFilters onSortChange={handleSortChange} onFiltersClick={handleFiltersClick} />
-			<ListSurveys onSurveyClick={handleSurveyClick} onMenuClick={handleMenuClick} />
+			<ListSurveys 
+				surveys={stressedSurveyData}
+				onSurveyClick={handleSurveyClick} 
+				onMenuClick={handleMenuClick} 
+			/>
 		</div>
 	);
 }

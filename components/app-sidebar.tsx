@@ -17,7 +17,7 @@ import {
 	SidebarTrigger,
 	useSidebar,
 } from '@/components/ui/sidebar';
-import { CreateSurveyOptionIcon, ValidataLogoComplete, ValidataOnlyIcon, UpgradeValidataImage, NotificationIcon, SupportIcon, SettingsIcon, UpgradeButtonIcon, SearchIcon, ChevronSelectorIcon } from '@/assets';
+import { CreateSurveyOptionIcon, ValidataLogoComplete, ValidataOnlyIcon, UpgradeValidataImage, NotificationIcon, SupportIcon, SettingsIcon, UpgradeButtonIcon, SearchIcon } from '@/assets';
 import Image from 'next/image';
 import { SearchBar } from '@/components/search-bar';
 import { ExpandableNavCategory } from './expandable-nav-category';
@@ -27,6 +27,8 @@ import { Avatar } from './avatar';
 import { cn } from '@/lib/utils';
 import { ReportColor } from './report-color';
 import { SurveyBadge } from './survey-badge';
+import { UserProfileDropdown } from './user-profile-dropdown';
+import { NotificationsDropdown } from './notifications-dropdown';
 
 // Menu items.
 const items = [
@@ -296,16 +298,23 @@ function SettingsIconWrapper({ className }: { className?: string }) {
 
 // Bottom Section - Menu List, Upgrade Card, User Profile
 function SidebarBottomSection() {
+	const [activeTab, setActiveTab] = React.useState<'general' | 'comments' | 'archive'>('general');
+
 	return (
 		<div className="box-border flex flex-col gap-3 p-4 shrink-0 w-full mt-auto">
 			{/* Menu List */}
 			<div className="flex flex-col gap-1 shrink-0 w-full">
-				<SidebarMenuItemComponent
-					icon={NotificationIconWrapper}
-					label="Notifications"
-					count="3"
-					collapsed={false}
-				/>
+				<NotificationsDropdown
+					activeTab={activeTab}
+					onTabChange={setActiveTab}
+				>
+					<SidebarMenuItemComponent
+						icon={NotificationIconWrapper}
+						label="Notifications"
+						count="3"
+						collapsed={false}
+					/>
+				</NotificationsDropdown>
 				<SidebarMenuItemComponent
 					icon={SupportIconWrapper}
 					label="Support"
@@ -358,42 +367,55 @@ function SidebarBottomSection() {
 			</div>
 
 			{/* User Profile */}
-			<div className="box-border flex gap-2 items-center px-2 py-1.5 relative rounded-xl shrink-0 w-full">
-				<Avatar
-					size="32"
-					radius="rectangle"
-					name="Maher Jilani"
-					color="green"
-				/>
-				<div className="basis-0 flex flex-col grow h-9 items-start justify-center min-h-0 min-w-0 relative shrink-0">
-					<p className="font-sans font-medium leading-5 relative shrink-0 text-sm text-gray-950 text-nowrap tracking-[-0.28px] whitespace-pre">
-						Maher Jilani
-					</p>
-					<p className="font-sans font-normal leading-4 min-w-full relative shrink-0 text-xs text-gray-600 tracking-[-0.24px]">
-						maher@validata.so
-					</p>
-				</div>
-				<div className="flex gap-2 items-center justify-center relative rounded-lg shrink-0 size-6">
-					<Image src={ChevronSelectorIcon} alt="Chevron Selector" width={16} height={16} className="size-4" />
-				</div>
-			</div>
+			<UserProfileDropdown
+				user={{
+					name: 'Maher Jilani',
+					email: 'maher@validata.so',
+					avatar: {
+						name: 'Maher Jilani',
+						color: 'green',
+					},
+				}}
+				workspaces={[
+					{
+						id: 'validata-so',
+						name: 'Validata.so',
+						isSelected: true,
+					},
+					{
+						id: 'maher-workspace',
+						name: "Maher Jilani's workspace",
+						avatar: {
+							name: 'Maher Jilani',
+							color: 'green',
+						},
+					},
+				]}
+			/>
 		</div>
 	);
 }
 
 // Bottom Section - Collapsed State
 function SidebarBottomSectionCollapsed() {
+	const [activeTab, setActiveTab] = React.useState<'general' | 'comments' | 'archive'>('general');
+
 	return (
 		<div className="box-border flex flex-col gap-4 items-center pb-[22px] pt-4 px-4 shrink-0 w-full mt-auto">
 			{/* Menu List */}
 			<div className="flex flex-col gap-1 items-center shrink-0 w-full">
-				<SidebarMenuItemComponent
-					icon={NotificationIconWrapper}
-					label="Notifications"
-					count="3"
-					collapsed={true}
-					tooltipText="Notifications"
-				/>
+				<NotificationsDropdown
+					activeTab={activeTab}
+					onTabChange={setActiveTab}
+				>
+					<SidebarMenuItemComponent
+						icon={NotificationIconWrapper}
+						label="Notifications"
+						count="3"
+						collapsed={true}
+						tooltipText="Notifications"
+					/>
+				</NotificationsDropdown>
 				<SidebarMenuItemComponent
 					icon={SupportIconWrapper}
 					label="Support"

@@ -5,6 +5,14 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { RefreshIcon, ChartIcon, FrameIcon, ResponseIcon, SurveyIcon as SurveyIconAsset } from '@/assets';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export interface SurveyCardProps {
     title: string;
@@ -242,32 +250,125 @@ const StatItem = ({ icon, value, size, tooltipText }: { icon: React.ComponentPro
     return content;
 }
 
-const MenuButton = ({ onClick }: { onClick?: () => void }) => (
-    <div className="border-[#edeef2] border-[0px_0px_0px_1px] border-solid box-border content-stretch flex gap-[8px] items-center p-[16px] relative shrink-0">
-        <Tooltip>
-            <TooltipTrigger asChild>
-                <button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        onClick?.();
-                    }}
-                    className="bg-white border border-[#dfe1e6] border-solid box-border content-stretch flex items-center justify-center relative rounded-[7px] shrink-0 size-[24px]"
+const MenuButton = ({ onClick }: { onClick?: () => void }) => {
+    const [open, setOpen] = React.useState(false);
+
+    return (
+        <div className="border-[#edeef2] border-[0px_0px_0px_1px] border-solid box-border content-stretch flex gap-[8px] items-center p-[16px] relative shrink-0">
+            <DropdownMenu open={open} onOpenChange={setOpen}>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <DropdownMenuTrigger asChild>
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    onClick?.();
+                                }}
+                                className={cn(
+                                    "bg-white border border-[#dfe1e6] border-solid box-border content-stretch flex items-center justify-center relative rounded-[7px] shrink-0 size-[24px] transition-colors",
+                                    open
+                                        ? "border-[#060510]"
+                                        : "border-[#dfe1e6] hover:border-[#9999AD]"
+                                )}
+                            >
+                                <div className="overflow-clip relative shrink-0 size-[12.25px] flex items-center justify-center">
+                                    <svg width="12.25" height="12.25" viewBox="0 0 12.25 12.25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="2.04" cy="6.125" r="1.02" fill={open ? "#060510" : "#9999AD"} />
+                                        <circle cx="6.125" cy="6.125" r="1.02" fill={open ? "#060510" : "#9999AD"} />
+                                        <circle cx="10.21" cy="6.125" r="1.02" fill={open ? "#060510" : "#9999AD"} />
+                                    </svg>
+                                </div>
+                            </button>
+                        </DropdownMenuTrigger>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" sideOffset={8}>
+                        More options
+                    </TooltipContent>
+                </Tooltip>
+                <DropdownMenuContent
+                    align="end"
+                    sideOffset={8}
+                    className="bg-white border border-[#dfe1e6] border-solid box-border rounded-[14px] w-[180px] p-0 shadow-lg"
+                    onClick={(e) => e.stopPropagation()}
                 >
-                    <div className="overflow-clip relative shrink-0 size-[12.25px] flex items-center justify-center">
-                        <svg width="12.25" height="12.25" viewBox="0 0 12.25 12.25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="2.04" cy="6.125" r="1.02" fill="#9999AD" />
-                            <circle cx="6.125" cy="6.125" r="1.02" fill="#9999AD" />
-                            <circle cx="10.21" cy="6.125" r="1.02" fill="#9999AD" />
-                        </svg>
-                    </div>
-                </button>
-            </TooltipTrigger>
-            <TooltipContent side="top" sideOffset={8}>
-                More options
-            </TooltipContent>
-        </Tooltip>
-    </div>
-);
+                    <DropdownMenuGroup className="box-border content-stretch flex flex-col gap-[4px] items-start p-[4px] relative shrink-0 w-full">
+                        <DropdownMenuItem
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setOpen(false);
+                            }}
+                            className="bg-white box-border content-stretch flex gap-[8px] items-center overflow-clip px-[8px] py-[6px] relative rounded-[10px] shrink-0 w-full hover:bg-gray-50 focus:bg-gray-50 m-0"
+                        >
+                            <div className="basis-0 content-stretch flex gap-[8px] grow items-center justify-center min-h-px min-w-px relative shrink-0">
+                                <p className="basis-0 font-sans font-medium grow leading-[20px] min-h-px min-w-px not-italic relative shrink-0 text-[#4c4c5c] text-[14px] tracking-[-0.28px]">
+                                    Open
+                                </p>
+                            </div>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setOpen(false);
+                            }}
+                            className="bg-white box-border content-stretch flex gap-[8px] items-center overflow-clip px-[8px] py-[6px] relative rounded-[10px] shrink-0 w-full hover:bg-gray-50 focus:bg-gray-50 m-0"
+                        >
+                            <div className="basis-0 content-stretch flex gap-[8px] grow items-center justify-center min-h-px min-w-px relative shrink-0">
+                                <p className="basis-0 font-sans font-medium grow leading-[20px] min-h-px min-w-px not-italic relative shrink-0 text-[#4c4c5c] text-[14px] tracking-[-0.28px]">
+                                    Copy link
+                                </p>
+                            </div>
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    <DropdownMenuSeparator className="bg-[#edeef2] h-px my-0 mx-0" />
+                    <DropdownMenuGroup className="box-border content-stretch flex flex-col gap-[4px] items-start p-[4px] relative shrink-0 w-full">
+                        <DropdownMenuItem
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setOpen(false);
+                            }}
+                            className="bg-white box-border content-stretch flex gap-[8px] items-center overflow-clip px-[8px] py-[6px] relative rounded-[10px] shrink-0 w-full hover:bg-gray-50 focus:bg-gray-50 m-0"
+                        >
+                            <div className="basis-0 content-stretch flex gap-[8px] grow items-center justify-center min-h-px min-w-px relative shrink-0">
+                                <p className="basis-0 font-sans font-medium grow leading-[20px] min-h-px min-w-px not-italic relative shrink-0 text-[#4c4c5c] text-[14px] tracking-[-0.28px]">
+                                    Rename
+                                </p>
+                            </div>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setOpen(false);
+                            }}
+                            className="bg-white box-border content-stretch flex gap-[8px] items-center overflow-clip px-[8px] py-[6px] relative rounded-[10px] shrink-0 w-full hover:bg-gray-50 focus:bg-gray-50 m-0"
+                        >
+                            <div className="basis-0 content-stretch flex gap-[8px] grow items-center justify-center min-h-px min-w-px relative shrink-0">
+                                <p className="basis-0 font-sans font-medium grow leading-[20px] min-h-px min-w-px not-italic relative shrink-0 text-[#4c4c5c] text-[14px] tracking-[-0.28px]">
+                                    Duplicate
+                                </p>
+                            </div>
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    <DropdownMenuSeparator className="bg-[#edeef2] h-px my-0 mx-0" />
+                    <DropdownMenuGroup className="box-border content-stretch flex flex-col gap-[4px] items-start p-[4px] relative shrink-0 w-full">
+                        <DropdownMenuItem
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setOpen(false);
+                            }}
+                            className="bg-white box-border content-stretch flex gap-[8px] items-center overflow-clip px-[8px] py-[6px] relative rounded-[10px] shrink-0 w-full hover:bg-gray-50 focus:bg-gray-50 m-0"
+                        >
+                            <div className="basis-0 content-stretch flex gap-[8px] grow items-center justify-center min-h-px min-w-px relative shrink-0">
+                                <p className="basis-0 font-sans font-medium grow leading-[20px] min-h-px min-w-px not-italic relative shrink-0 text-[#4c4c5c] text-[14px] tracking-[-0.28px]">
+                                    Delete
+                                </p>
+                            </div>
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                </DropdownMenuContent>
+            </DropdownMenu>
+        </div>
+    );
+};
 
 export function SurveyCard({
     title,
