@@ -78,7 +78,7 @@ export function ListSurveys({
 	};
 
 	return (
-		<div className={`box-border content-start flex flex-wrap gap-[16px] items-start p-[16px] relative size-full ${className || ''}`}>
+		<div className={`box-border content-start flex flex-wrap gap-4 items-start relative size-full ${className || ''}`}>
 			{surveys.map((survey) => (
 				<SurveyCard
 					key={survey.id}

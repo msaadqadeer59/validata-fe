@@ -43,6 +43,18 @@ import ExportAcceptIcon from './export-accept-icon.svg'
 import InviteMembersIcon from './invite-members-icon.svg'
 import LogoutIcon from './logout-icon.svg'
 import EmptyNotificationIcon from './empty-notifications.svg'
+import GoogleAnalyticsIcon from './analytics-icon.svg'
+import GoogleCalendarIcon from './google-calendar-icon.svg'
+import GoogleSheetsIcon from './sheets-icon.svg'
+import SlackIcon from './slack-icon.svg'
+import ZapierIcon from './zapier-icon.svg'
+import SalesforceIcon from './frame-integration-icon.svg'
+import HubSpotIcon from './hub-spot.svg'
+import MailchimpIcon from './mail-chimp-icon.svg'
+import NotionIcon from './notion-icon.svg'
+import MicrosoftTeamsIcon from './teams-icon.svg'
+import DropboxIcon from './dropbox-icon.svg'
+import StripeIcon from './stripe-icon.svg'
 
 export {
 	EmptyNotificationIcon,
@@ -90,4 +102,16 @@ export {
 	ExportAcceptIcon,
 	InviteMembersIcon,
 	LogoutIcon,
+	GoogleAnalyticsIcon,
+	GoogleCalendarIcon,
+	GoogleSheetsIcon,
+	SlackIcon,
+	ZapierIcon,
+	SalesforceIcon,
+	HubSpotIcon,
+	MailchimpIcon,
+	NotionIcon,
+	MicrosoftTeamsIcon,
+	DropboxIcon,
+	StripeIcon,
 };

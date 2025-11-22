@@ -21,10 +21,8 @@ function Layout({ children }: { children: React.ReactNode }) {
 		<SurveyProvider>
 			<SidebarProvider defaultOpen={true}>
 				<AppSidebar />
-				<LayoutContent>
-					<div className='p-[16px]'>
-						{children}
-					</div>
+				<LayoutContent >
+					{children}
 				</LayoutContent>
 			</SidebarProvider>
 		</SurveyProvider>

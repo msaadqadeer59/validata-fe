@@ -56,7 +56,7 @@ export function Topbar({
           showCount={true}
           count={surveysCount}
           onClick={() => handleTabClick("surveys")}
-          className="z-[3]"
+          className="z-[3] cursor-pointer"
         />
 
         {/* Integrations Tab */}
@@ -67,7 +67,7 @@ export function Topbar({
           text="Integrations"
           showCount={false}
           onClick={() => handleTabClick("integrations")}
-          className="z-[2]"
+          className="z-[2] cursor-pointer"
         />
 
         {/* Brand Kit Tab */}
@@ -78,7 +78,7 @@ export function Topbar({
           text="Brand kit"
           showCount={false}
           onClick={() => handleTabClick("brand-kit")}
-          className="z-[1]"
+          className="z-[1] cursor-pointer"
         />
       </div>
 

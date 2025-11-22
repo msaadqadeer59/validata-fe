@@ -26,12 +26,12 @@ export default function DashboardPage() {
 	};
 
 	return (
-		<div className="box-border content-stretch flex flex-col items-start relative w-full">
+		<div className="box-border content-stretch flex flex-col items-start relative w-full p-4">
 			<SurveyFilters onSortChange={handleSortChange} onFiltersClick={handleFiltersClick} />
-			<ListSurveys 
+			<ListSurveys
 				surveys={stressedSurveyData}
-				onSurveyClick={handleSurveyClick} 
-				onMenuClick={handleMenuClick} 
+				onSurveyClick={handleSurveyClick}
+				onMenuClick={handleMenuClick}
 			/>
 		</div>
 	);

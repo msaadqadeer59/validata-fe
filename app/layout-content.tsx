@@ -1,19 +1,38 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Topbar } from '@/components/topbar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function LayoutContent({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname();
+	const router = useRouter();
 	const [activeTab, setActiveTab] = useState<'surveys' | 'integrations' | 'brand-kit'>('surveys');
 
-	// Show topbar on dashboard and other main pages, but not on survey editor
-	const showTopbar = pathname === '/dashboard' || pathname === '/';
+	// Show topbar on dashboard, integrations, brand-kit pages, but not on survey editor
+	const showTopbar = pathname === '/dashboard' || pathname === '/' || pathname === '/integrations' || pathname === '/brand-kit';
+
+	// Determine active tab based on pathname
+	useEffect(() => {
+		if (pathname === '/dashboard' || pathname === '/') {
+			setActiveTab('surveys');
+		} else if (pathname === '/integrations') {
+			setActiveTab('integrations');
+		} else if (pathname === '/brand-kit') {
+			setActiveTab('brand-kit');
+		}
+	}, [pathname]);
 
 	const handleTabChange = (tab: 'surveys' | 'integrations' | 'brand-kit') => {
 		setActiveTab(tab);
-		// You can add navigation logic here if needed
+		// Navigate to the corresponding page
+		if (tab === 'surveys') {
+			router.push('/dashboard');
+		} else if (tab === 'integrations') {
+			router.push('/integrations');
+		} else if (tab === 'brand-kit') {
+			router.push('/brand-kit');
+		}
 	};
 
 	const handleShareFeedback = () => {
@@ -27,7 +46,7 @@ export function LayoutContent({ children }: { children: React.ReactNode }) {
 	};
 
 	return (
-		<main className='flex flex-col w-full'>
+		<main className='flex flex-col w-full p-[16px]'>
 			{showTopbar && (
 				<div className='shrink-0'>
 					<Topbar
